@@ -4,6 +4,9 @@ const nextConfig = {
   trailingSlash: true,
   basePath: '/kathan',
   assetPrefix: '/kathan/',
+  generateBuildId: () => {
+    return Date.now().toString()
+  },
   images: {
     unoptimized: true
   },
