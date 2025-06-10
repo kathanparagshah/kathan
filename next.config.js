@@ -2,6 +2,9 @@
 const nextConfig = {
   output: 'export',
   trailingSlash: true,
+  distDir: 'docs',
+  basePath: '/kathan',
+  assetPrefix: '/kathan/',
   images: {
     unoptimized: true
   },
