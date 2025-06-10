@@ -101,7 +101,7 @@ const Contact = () => {
                 Get a detailed overview of my experience, skills, and education.
               </p>
               <a
-                href="/Kathan Parag Shah.pdf"
+                href="/kathan/Kathan Parag Shah.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary"
