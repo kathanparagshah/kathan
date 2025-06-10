@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Mail, Phone, MapPin, Send, Github, Linkedin } from 'lucide-react'
+import { Mail, Phone, MapPin, Download, Send, Github, Linkedin } from 'lucide-react'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -92,7 +92,24 @@ const Contact = () => {
               </div>
             </div>
             
-
+            {/* Resume Download */}
+            <div className="bg-gray-50 rounded-lg p-6">
+              <h4 className="text-lg font-semibold text-gray-900 mb-4">
+                Download My Resume
+              </h4>
+              <p className="text-gray-600 mb-4">
+                Get a detailed overview of my experience, skills, and education.
+              </p>
+              <a
+                href="/Kathan Parag Shah.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary"
+              >
+                <Download size={20} />
+                Download PDF
+              </a>
+            </div>
             
             {/* Social Links */}
             <div>
