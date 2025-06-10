@@ -15,7 +15,7 @@ const Hero = () => {
         <div className="animate-fade-in">
           <div className="mb-8">
             <Image
-              src="/profile.jpeg"
+              src="/kathan/profile.jpeg"
               alt="Kathan Parag Shah"
               width={200}
               height={200}
