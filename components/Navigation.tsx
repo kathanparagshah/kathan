@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Menu, X } from 'lucide-react'
+import Image from 'next/image'
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -26,9 +27,16 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           <button
             onClick={() => scrollToSection('#hero')}
-            className="text-xl font-bold text-gray-900 hover:text-primary-600 transition-colors"
+            className="flex items-center space-x-3 text-xl font-bold text-gray-900 hover:text-primary-600 transition-colors"
           >
-            Kathan
+            <Image
+              src="/kathan/profile.jpeg"
+              alt="Kathan Parag Shah"
+              width={40}
+              height={40}
+              className="rounded-full"
+            />
+            <span>Kathan Parag Shah</span>
           </button>
 
           {/* Desktop Navigation */}
