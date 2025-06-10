@@ -12,6 +12,15 @@ const Hero = () => {
     <section id="hero" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-white">
       <div className="container-max section-padding text-center">
         <div className="animate-fade-in">
+          {/* Profile Picture */}
+          <div className="mb-8">
+            <img 
+              src="/profile-picture.svg" 
+              alt="Kathan Parag Shah Profile Picture" 
+              className="w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full shadow-lg hover:shadow-xl transition-shadow duration-300"
+            />
+          </div>
+          
           <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
             Hi, I'm <span className="text-primary-600">Kathan Parag Shah</span>
           </h1>
