@@ -16,21 +16,22 @@ const Contact = () => {
     setFormData(prev => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    setIsSubmitting(true)
     
-    try {
-      // Simulate form submission - replace with actual endpoint
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      setSubmitStatus('success')
-      setFormData({ name: '', email: '', subject: '', message: '' })
-    } catch (error) {
-      setSubmitStatus('error')
-    } finally {
-      setIsSubmitting(false)
-      setTimeout(() => setSubmitStatus('idle'), 5000)
-    }
+    // Create mailto link with form data
+    const { name, email, subject, message } = formData
+    const mailtoLink = `mailto:kathanshah04@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+    )}`
+    
+    // Open default mail client
+    window.location.href = mailtoLink
+    
+    // Reset form after opening mail client
+    setFormData({ name: '', email: '', subject: '', message: '' })
+    setSubmitStatus('success')
+    setTimeout(() => setSubmitStatus('idle'), 3000)
   }
 
   return (
@@ -220,30 +221,16 @@ const Contact = () => {
               
               <button
                 type="submit"
-                disabled={isSubmitting}
-                className={`w-full py-3 px-6 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 ${
-                  isSubmitting
-                    ? 'bg-gray-400 cursor-not-allowed'
-                    : 'bg-primary-600 hover:bg-primary-700'
-                } text-white`}
+                className="w-full py-3 px-6 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 bg-primary-600 hover:bg-primary-700 text-white"
               >
-                {isSubmitting ? (
-                  <>
-                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                    Sending...
-                  </>
-                ) : (
-                  <>
-                    <Send size={20} />
-                    Send Message
-                  </>
-                )}
+                <Send size={20} />
+                Send Message
               </button>
               
               {submitStatus === 'success' && (
                 <div className="bg-green-50 border border-green-200 rounded-lg p-4">
                   <p className="text-green-800 font-medium">
-                    Thank you! Your message has been sent successfully. I'll get back to you soon.
+                    Opening your default mail client with the message pre-filled. Please send the email to complete your message.
                   </p>
                 </div>
               )}
@@ -251,7 +238,7 @@ const Contact = () => {
               {submitStatus === 'error' && (
                 <div className="bg-red-50 border border-red-200 rounded-lg p-4">
                   <p className="text-red-800 font-medium">
-                    Sorry, there was an error sending your message. Please try again or contact me directly.
+                    If your mail client didn't open, please contact me directly at kathanshah04@gmail.com
                   </p>
                 </div>
               )}
