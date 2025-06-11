@@ -92,16 +92,30 @@ const Projects = () => {
     ? projects 
     : projects.filter(project => project.technologies.includes(selectedFilter))
 
-  const ProjectCard = ({ project }: { project: any }) => (
-    <div className="project-card group">
-      
-      <h3 className="text-xl font-semibold text-gray-900 mb-2">
-        {project.title}
-      </h3>
-      
-      <p className="text-gray-600 mb-3 line-clamp-2">
-        {project.description}
-      </p>
+  const ProjectCard = ({ project }: { project: any }) => {
+    const [isExpanded, setIsExpanded] = useState(false)
+    const isLongDescription = project.description.length > 120
+    
+    return (
+      <div className="project-card group">
+        
+        <h3 className="text-xl font-semibold text-gray-900 mb-2">
+          {project.title}
+        </h3>
+        
+        <div className="mb-3">
+          <p className={`text-gray-600 ${!isExpanded && isLongDescription ? 'line-clamp-2' : ''}`}>
+            {project.description}
+          </p>
+          {isLongDescription && (
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="text-blue-600 hover:text-blue-800 text-sm font-medium mt-1 transition-colors"
+            >
+              {isExpanded ? 'Read less...' : 'Read more...'}
+            </button>
+          )}
+        </div>
       
       <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-3">
         <p className="text-red-800 text-sm font-medium">
@@ -144,9 +158,10 @@ const Projects = () => {
         >
           <Github size={24} />
         </a>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 
   return (
     <section id="projects" className="py-20 bg-gray-50">
