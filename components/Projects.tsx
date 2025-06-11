@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { ExternalLink, Github, Filter } from 'lucide-react'
 
 const Projects = () => {
@@ -9,6 +9,7 @@ const Projects = () => {
       title: 'Wheel Strategy Options',
       description: 'Advanced options trading platform with covered call screening capabilities and real-time market data analysis.',
       impact: 'Provides sophisticated options analysis tools for active traders',
+      problem: 'Options traders need efficient tools to screen covered calls and analyze market data in real-time',
       technologies: ['React', 'JavaScript', 'Node.js', 'Financial APIs', 'Chart.js'],
       category: 'Full-Stack',
       liveUrl: 'https://wheelstrategyoptions.com/covered-call-screener',
@@ -19,6 +20,7 @@ const Projects = () => {
       title: 'MegaShop',
       description: 'Modern e-commerce platform with responsive design, product catalog, shopping cart, and user authentication.',
       impact: 'Complete e-commerce solution with modern UI/UX design',
+      problem: 'Small businesses need affordable, modern e-commerce platforms with responsive design and essential features',
       technologies: ['HTML', 'CSS', 'JavaScript', 'Responsive Design', 'E-commerce'],
       category: 'Frontend',
       liveUrl: 'https://kathanparagshah.github.io/MegaShop/',
@@ -29,6 +31,7 @@ const Projects = () => {
       title: 'Mean Variance Standard Deviation Calculator',
       description: 'Statistical analysis tool that calculates mean, variance, and standard deviation for 3x3 matrices using NumPy.',
       impact: 'Efficient statistical computation tool for data analysis workflows',
+      problem: 'Data analysts need quick and accurate statistical calculations for matrix data without manual computation',
       technologies: ['Python', 'NumPy', 'Statistics', 'Data Analysis'],
       category: 'Data Science',
       liveUrl: '',
@@ -39,6 +42,7 @@ const Projects = () => {
       title: 'Demographic Data Analyzer',
       description: 'Data analysis project that explores demographic patterns using pandas to answer statistical questions about population data.',
       impact: 'Provides insights into demographic trends and population statistics',
+      problem: 'Researchers need automated tools to analyze large demographic datasets and extract meaningful population insights',
       technologies: ['Python', 'Pandas', 'Data Analysis', 'Statistics'],
       category: 'Data Science',
       liveUrl: '',
@@ -49,6 +53,7 @@ const Projects = () => {
       title: 'Medical Data Visualizer',
       description: 'Healthcare data visualization tool that creates categorical plots and heat maps to analyze medical examination data and cardiovascular disease patterns.',
       impact: 'Enables medical professionals to visualize health data correlations',
+      problem: 'Medical professionals need intuitive visualization tools to identify patterns in complex health examination data',
       technologies: ['Python', 'Matplotlib', 'Seaborn', 'Pandas', 'Data Visualization'],
       category: 'Data Science',
       liveUrl: '',
@@ -59,6 +64,7 @@ const Projects = () => {
       title: 'Page View Time Series Visualizer',
       description: 'Time series analysis tool that visualizes website page view data using line charts, bar charts, and box plots to identify patterns and trends.',
       impact: 'Helps understand website traffic patterns and seasonal trends',
+      problem: 'Website owners need comprehensive time series analysis to understand traffic patterns and optimize content strategy',
       technologies: ['Python', 'Matplotlib', 'Seaborn', 'Pandas', 'Time Series Analysis'],
       category: 'Data Science',
       liveUrl: '',
@@ -69,6 +75,7 @@ const Projects = () => {
       title: 'Sea Level Predictor',
       description: 'Environmental data analysis project that predicts future sea level changes using linear regression and historical data visualization.',
       impact: 'Provides climate change insights through predictive modeling',
+      problem: 'Climate researchers need predictive models to forecast sea level changes and assess environmental impact',
       technologies: ['Python', 'Matplotlib', 'Pandas', 'Linear Regression', 'Climate Data'],
       category: 'Data Science',
       liveUrl: '',
@@ -95,6 +102,12 @@ const Projects = () => {
       <p className="text-gray-600 mb-3 line-clamp-2">
         {project.description}
       </p>
+      
+      <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-3">
+        <p className="text-red-800 text-sm font-medium">
+          Problem: {project.problem}
+        </p>
+      </div>
       
       <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-4">
         <p className="text-green-800 text-sm font-medium">

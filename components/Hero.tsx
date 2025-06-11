@@ -10,7 +10,7 @@ const Hero = () => {
   }
 
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+    <section id="hero" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-white">
       <div className="container-max section-padding text-center">
         <div className="animate-fade-in">
           <div className="mb-8">
@@ -23,15 +23,15 @@ const Hero = () => {
               priority
             />
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6">
-            Hi, I'm <span className="text-primary-600 dark:text-primary-400">Kathan Parag Shah</span>
+          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
+            Hi, I'm <span className="text-primary-600">Kathan Parag Shah</span>
           </h1>
           
-          <h2 className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 font-medium">
+          <h2 className="text-xl md:text-2xl text-gray-600 mb-8 font-medium">
             Computer Science & Economics Double Major
           </h2>
           
-          <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-gray-700 mb-12 max-w-3xl mx-auto leading-relaxed">
             Building innovative solutions with clean code and modern technologies. 
             Passionate about creating user-centric applications that make a difference.
           </p>
