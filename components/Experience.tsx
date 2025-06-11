@@ -8,7 +8,7 @@ const Experience = () => {
       title: 'Security Aide',
       organization: 'ASU Gammage',
       location: 'Tempe, AZ',
-      period: 'February 2025 – Present',
+      period: 'February 2025 – March 2025',
       sortDate: '2025-02',
       achievements: [
         'Analyzed security incident patterns across 15+ campus locations to identify high-risk areas and optimize patrol routes',
