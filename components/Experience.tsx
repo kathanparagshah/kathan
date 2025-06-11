@@ -5,6 +5,19 @@ const Experience = () => {
   const timelineData = [
     {
       type: 'work',
+      title: 'Memberships Services Supervisor',
+      organization: 'Sun Devil Fitness Complex',
+      location: 'Tempe, AZ',
+      period: 'June 2025 – Present',
+      sortDate: '2025-06',
+      achievements: [
+        'Supervised membership operations for 2,000+ active members, implementing data-driven retention strategies that increased renewal rates by 35%',
+        'Analyzed member usage patterns and facility metrics to optimize staffing schedules and resource allocation across peak hours',
+        'Developed automated reporting systems for membership analytics, reducing manual processing time by 50% and improving decision-making accuracy'
+      ]
+    },
+    {
+      type: 'work',
       title: 'Security Aide',
       organization: 'ASU Gammage',
       location: 'Tempe, AZ',
