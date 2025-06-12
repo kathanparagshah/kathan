@@ -2,6 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* Primary colors based on tailwind config */
+  --color-primary: #3b82f6; /* primary-500 */
+  --color-primary-light: #60a5fa; /* primary-400 */
+  
+  /* Text colors */
+  --color-text-primary: #1e3a8a; /* primary-900 */
+  --color-text-secondary: #64748b; /* slate-500 */
+  
+  /* Surface and border colors */
+  --color-surface: #ffffff;
+  --color-border: #e2e8f0; /* slate-200 */
+  
+  /* Status colors */
+  --color-success: #10b981; /* emerald-500 */
+  --color-warning: #f59e0b; /* amber-500 */
+  --color-error: #ef4444; /* red-500 */
+  
+  /* Additional colors used in components */
+  --color-forest: #047857; /* emerald-700 */
+  --color-burgundy: #9f1239; /* rose-800 */
+  
+  /* Background colors from existing CSS */
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
