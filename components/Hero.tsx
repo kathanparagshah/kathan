@@ -9,13 +9,17 @@ const Hero = () => {
     }
   }
 
+  // Determine if we're in production to use the correct image path
+  const isProd = process.env.NODE_ENV === 'production'
+  const imagePath = isProd ? '/kathan/profile.jpeg' : '/profile.jpeg'
+
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-white">
       <div className="container-max section-padding text-center">
         <div className="animate-fade-in">
           <div className="mb-8">
             <Image
-              src="/profile.jpeg"
+              src={imagePath}
               alt="Kathan Parag Shah"
               width={200}
               height={200}

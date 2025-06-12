@@ -5,6 +5,10 @@ import Image from 'next/image'
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false)
 
+  // Determine if we're in production to use the correct image path
+  const isProd = process.env.NODE_ENV === 'production'
+  const imagePath = isProd ? '/kathan/profile.jpeg' : '/profile.jpeg'
+
   const navItems = [
     { name: 'About', href: '#about' },
     { name: 'Projects', href: '#projects' },
@@ -30,7 +34,7 @@ const Navigation = () => {
             className="flex items-center space-x-3 text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors"
           >
             <Image
-              src="/profile.jpeg"
+              src={imagePath}
               alt="Kathan Parag Shah"
               width={40}
               height={40}
