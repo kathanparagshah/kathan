@@ -25,8 +25,8 @@ const Contact = () => {
       `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
     )}`
     
-    // Open default mail client
-    window.location.href = mailtoLink
+    // Open default mail client using window.open for better compatibility
+    window.open(mailtoLink, '_self')
     
     // Reset form after opening mail client
     setFormData({ name: '', email: '', subject: '', message: '' })
