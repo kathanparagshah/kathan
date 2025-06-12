@@ -178,7 +178,7 @@ const Projects = () => {
               onClick={() => setSelectedFilter(skill)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                 selectedFilter === skill
-                  ? 'bg-primary-600 text-white shadow-md'
+                  ? 'bg-blue-600 text-white shadow-md'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:shadow-sm'
               }`}
             >

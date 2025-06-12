@@ -31,116 +31,32 @@ const About = () => {
               </p>
             </div>
             
-            <div className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow duration-200">
-              <h3 className="text-xl font-semibold text-gray-900 mb-6 text-center">
-                A Day in My Life
+            <div className="bg-white border border-gray-200 rounded-xl p-8 hover:shadow-xl transition-all duration-300">
+              <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
+                Quick Facts About Me
               </h3>
               
-              <div className="flex justify-center">
-                <div className="relative w-80 h-60 border border-gray-100 rounded-lg overflow-hidden">
-                  <style jsx>{`
-                    .slideshow-container {
-                      position: relative;
-                      width: 100%;
-                      height: 100%;
-                    }
-                    
-                    .slide {
-                      position: absolute;
-                      top: 0;
-                      left: 0;
-                      width: 100%;
-                      height: 100%;
-                      opacity: 0;
-                      transition: opacity 1s ease-in-out;
-                      background-size: cover;
-                      background-position: center;
-                      background-repeat: no-repeat;
-                    }
-                    
-                    .slide.active {
-                      opacity: 1;
-                    }
-                    
-                    .slide:nth-child(1) {
-                      animation: slideShow1 10s infinite;
-                    }
-                    
-                    .slide:nth-child(2) {
-                      animation: slideShow2 10s infinite;
-                    }
-                    
-                    @keyframes slideShow1 {
-                      0%, 45% { opacity: 1; }
-                      50%, 95% { opacity: 0; }
-                      100% { opacity: 1; }
-                    }
-                    
-                    @keyframes slideShow2 {
-                      0%, 45% { opacity: 0; }
-                      50%, 95% { opacity: 1; }
-                      100% { opacity: 0; }
-                    }
-                    
-                    .overlay {
-                      position: absolute;
-                      bottom: 0;
-                      left: 0;
-                      right: 0;
-                      background: linear-gradient(transparent, rgba(0,0,0,0.7));
-                      color: white;
-                      padding: 20px;
-                      text-align: center;
-                    }
-                    
-                    .activity-label {
-                      font-size: 14px;
-                      font-weight: 600;
-                      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-                      opacity: 0;
-                      animation: labelShow 10s infinite;
-                    }
-                    
-                    .activity-label:nth-child(1) {
-                      animation-delay: 0s;
-                    }
-                    
-                    .activity-label:nth-child(2) {
-                      animation-delay: 5s;
-                    }
-                    
-                    @keyframes labelShow {
-                      0%, 45% { opacity: 1; }
-                      50%, 95% { opacity: 0; }
-                      100% { opacity: 1; }
-                    }
-                  `}</style>
-                  
-                  <div className="slideshow-container">
-                    <div 
-                      className="slide"
-                      style={{
-                        backgroundImage: 'url(/1.png)'
-                      }}
-                    />
-                    <div 
-                      className="slide"
-                      style={{
-                        backgroundImage: 'url(/2.jpeg)'
-                      }}
-                    />
-                    
-                    <div className="overlay">
-                      <div className="activity-label">Working & Coding</div>
-                      <div className="activity-label">Coffee & Relaxation</div>
-                    </div>
+               <div className="space-y-4">
+                  <div className="p-4 bg-white rounded-lg border border-gray-200 hover:shadow-md transition-all duration-200">
+                    <p className="text-gray-700 font-medium">I'm a total comic junkie—gotta read every single panel!</p>
                   </div>
+                  
+                  <div className="p-4 bg-white rounded-lg border border-gray-200 hover:shadow-md transition-all duration-200">
+                    <p className="text-gray-700 font-medium">Basically living in the MCU—where's my Iron Man suit?</p>
+                  </div>
+                  
+                  <div className="p-4 bg-white rounded-lg border border-gray-200 hover:shadow-md transition-all duration-200">
+                    <p className="text-gray-700 font-medium">Sci-fi film buff on a warp-speed quest for the next big-screen adventure</p>
+                  </div>
+                  
+                  <div className="p-4 bg-white rounded-lg border border-gray-200 hover:shadow-md transition-all duration-200">
+                    <p className="text-gray-700 font-medium">Flouting CS norms daily in PJs and my favorite hoodie</p>
+                  </div>
+                  
+                  <div className="p-4 bg-white rounded-lg border border-gray-200 hover:shadow-md transition-all duration-200">
+                     <p className="text-gray-700 font-medium">Fueled by coffee—seriously, I drink more espresso than water</p>
+                   </div>
                 </div>
-              </div>
-              
-              <p className="text-center text-sm text-gray-600 mt-4">
-                My daily routine captured in moments
-              </p>
             </div>
           </div>
         </div>

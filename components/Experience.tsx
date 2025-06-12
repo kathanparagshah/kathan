@@ -97,9 +97,9 @@ const Experience = () => {
   ].sort((a, b) => b.sortDate.localeCompare(a.sortDate)) // Sort by most recent first
 
   const ExperienceCard = ({ item }: { item: any }) => (
-    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border-l-4 border-primary-600">
+    <div className="bg-surface rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border-l-4 border-primary">
       <div className="flex items-start gap-4">
-        <div className="text-primary-600 mt-1">
+        <div className="text-primary mt-1">
           {item.type === 'education' ? <GraduationCap size={24} /> : <Briefcase size={24} />}
         </div>
         
@@ -108,7 +108,7 @@ const Experience = () => {
             {item.title}
           </h3>
           
-          <div className="text-primary-600 font-medium mb-2">
+          <div className="text-primary font-medium mb-2">
             {item.organization}
           </div>
           
@@ -126,7 +126,7 @@ const Experience = () => {
           <ul className="space-y-2">
             {item.achievements.map((achievement: string, index: number) => (
               <li key={index} className="flex items-start gap-2 text-gray-700">
-                <div className="w-1.5 h-1.5 bg-primary-600 rounded-full mt-2 flex-shrink-0"></div>
+                <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                 <span>{achievement}</span>
               </li>
             ))}
@@ -153,13 +153,14 @@ const Experience = () => {
           <div className="bg-white rounded-lg p-4 hover:shadow-md transition-shadow duration-300 border border-gray-100">
             {/* Header with icon and badge */}
             <div className="flex items-center gap-3 mb-3">
-              <div className="p-1.5 bg-primary-50 rounded-lg">
-                {item.type === 'education' ? 
-                  <GraduationCap size={16} className="text-primary-600" /> : 
-                  <Briefcase size={16} className="text-primary-600" />
-                }
+              <div className="p-1.5 bg-blue-50 rounded-lg">
+                {item.type === 'education' ? (
+                  <GraduationCap size={16} className="text-blue-600" />
+                ) : (
+                  <Briefcase size={16} className="text-blue-600" />
+                )}
               </div>
-              <div className="text-xs font-medium text-primary-700 bg-primary-50 px-2 py-1 rounded-full">
+              <div className="text-xs font-medium text-blue-600 bg-blue-50 px-2 py-1 rounded-full">
                 {item.type === 'education' ? 'EDUCATION' : 'EXPERIENCE'}
               </div>
             </div>
@@ -169,7 +170,7 @@ const Experience = () => {
               <h3 className="text-lg font-bold text-black mb-1 leading-tight">
                 {item.title}
               </h3>
-              <div className="text-primary-600 font-semibold text-base mb-2">
+              <div className="text-blue-600 font-semibold text-base mb-2">
                 {item.organization}
               </div>
             </div>
@@ -177,11 +178,11 @@ const Experience = () => {
             {/* Meta information */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-gray-600 mb-3">
               <div className="flex items-center gap-1">
-                <Calendar size={14} className="text-primary-500" />
+                <Calendar size={14} className="text-primary-light" />
                 <span className="text-xs">{item.period}</span>
               </div>
               <div className="flex items-center gap-1">
-                <MapPin size={14} className="text-primary-500" />
+                <MapPin size={14} className="text-primary-light" />
                 <span className="text-xs">{item.location}</span>
               </div>
             </div>

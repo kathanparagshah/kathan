@@ -15,7 +15,7 @@ const Hero = () => {
         <div className="animate-fade-in">
           <div className="mb-8">
             <Image
-              src="/kathan/profile.jpeg"
+              src="/profile.jpeg"
               alt="Kathan Parag Shah"
               width={200}
               height={200}
@@ -24,7 +24,7 @@ const Hero = () => {
             />
           </div>
           <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
-            Hi, I'm <span className="text-primary-600">Kathan Parag Shah</span>
+            Hi, I'm <span className="text-blue-600">Kathan Parag Shah</span>
           </h1>
           
           <h2 className="text-xl md:text-2xl text-gray-600 mb-8 font-medium">
@@ -39,7 +39,7 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
             <button 
               onClick={scrollToAbout}
-              className="btn-primary"
+              className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center gap-2"
             >
               Learn More About Me
               <ArrowDown size={20} />
@@ -47,7 +47,7 @@ const Hero = () => {
             
             <a 
               href="#contact" 
-              className="btn-secondary"
+              className="bg-white text-blue-600 px-6 py-3 rounded-lg font-medium border border-blue-600 hover:bg-blue-50 transition-colors flex items-center gap-2"
               onClick={(e) => {
                 e.preventDefault()
                 const element = document.querySelector('#contact')
@@ -66,7 +66,7 @@ const Hero = () => {
               href="https://github.com/kathanparagshah" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-gray-600 hover:text-primary-600 transition-colors"
+              className="text-gray-600 hover:text-blue-600 transition-colors"
               aria-label="GitHub Profile"
             >
               <Github size={24} />
@@ -76,7 +76,7 @@ const Hero = () => {
               href="https://www.linkedin.com/in/kathan-shah-90ba43263/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-gray-600 hover:text-primary-600 transition-colors"
+              className="text-gray-600 hover:text-blue-600 transition-colors"
               aria-label="LinkedIn Profile"
             >
               <Linkedin size={24} />
@@ -84,7 +84,7 @@ const Hero = () => {
             
             <a 
               href="mailto:kathanshah04@gmail.com"
-              className="text-gray-600 hover:text-primary-600 transition-colors"
+              className="text-gray-600 hover:text-blue-600 transition-colors"
               aria-label="Email Contact"
             >
               <Mail size={24} />

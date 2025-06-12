@@ -27,10 +27,10 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           <button
             onClick={() => scrollToSection('#hero')}
-            className="flex items-center space-x-3 text-xl font-bold text-gray-900 hover:text-primary-600 transition-colors"
+            className="flex items-center space-x-3 text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors"
           >
             <Image
-              src="/kathan/profile.jpeg"
+              src="/profile.jpeg"
               alt="Kathan Parag Shah"
               width={40}
               height={40}
@@ -45,7 +45,7 @@ const Navigation = () => {
               <button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
-                className="text-gray-600 hover:text-primary-600 font-medium transition-colors"
+                className="text-gray-600 hover:text-blue-600 font-medium transition-colors"
               >
                 {item.name}
               </button>
@@ -55,7 +55,7 @@ const Navigation = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-gray-600 hover:text-primary-600"
+            className="md:hidden p-2 text-gray-600 hover:text-blue-600"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -68,7 +68,7 @@ const Navigation = () => {
               <button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
-                className="block w-full text-left py-2 text-gray-600 hover:text-primary-600 font-medium transition-colors"
+                className="block w-full text-left py-2 text-gray-600 hover:text-blue-600 font-medium transition-colors"
               >
                 {item.name}
               </button>

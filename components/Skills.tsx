@@ -244,7 +244,7 @@ const Skills = () => {
           {skillCategories.map((category, index) => (
             <div key={index} className="bg-white rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow">
               <div className="flex items-center gap-3 mb-6">
-                <div className="text-primary-600">
+                <div className="text-primary">
                   {category.icon}
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900">
@@ -266,7 +266,7 @@ const Skills = () => {
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-2">
                       <div 
-                        className="bg-primary-600 h-2 rounded-full transition-all duration-1000 ease-out"
+                        className="bg-primary h-2 rounded-full transition-all duration-1000 ease-out"
                         style={{ width: `${skill.level}%` }}
                       ></div>
                     </div>

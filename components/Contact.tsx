@@ -58,32 +58,32 @@ const Contact = () => {
             {/* Contact Details */}
             <div className="space-y-4">
               <div className="flex items-center gap-4">
-                <div className="bg-primary-100 p-3 rounded-lg">
-                  <Mail className="text-primary-600" size={24} />
+                <div className="bg-blue-50 p-3 rounded-lg">
+              <Mail className="text-blue-600" size={24} />
                 </div>
                 <div>
                   <p className="font-medium text-gray-900">Email</p>
-                  <a href="mailto:kathanshah04@gmail.com" className="text-primary-600 hover:text-primary-700">
+                  <a href="mailto:kathanshah04@gmail.com" className="text-blue-600 hover:text-blue-800">
                     kathanshah04@gmail.com
                   </a>
                 </div>
               </div>
               
               <div className="flex items-center gap-4">
-                <div className="bg-primary-100 p-3 rounded-lg">
-                  <Phone className="text-primary-600" size={24} />
+                <div className="bg-blue-50 p-3 rounded-lg">
+              <Phone className="text-blue-600" size={24} />
                 </div>
                 <div>
                   <p className="font-medium text-gray-900">Phone</p>
-                  <a href="tel:+16028150971" className="text-primary-600 hover:text-primary-700">
+                  <a href="tel:+16028150971" className="text-blue-600 hover:text-blue-800">
                     +1 (602) 815-0971
                   </a>
                 </div>
               </div>
               
               <div className="flex items-center gap-4">
-                <div className="bg-primary-100 p-3 rounded-lg">
-                  <MapPin className="text-primary-600" size={24} />
+                <div className="bg-blue-50 p-3 rounded-lg">
+              <MapPin className="text-blue-600" size={24} />
                 </div>
                 <div>
                   <p className="font-medium text-gray-900">Location</p>
@@ -104,7 +104,7 @@ const Contact = () => {
                 href="/kathan/Kathan Parag Shah.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-primary"
+                className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center gap-2"
               >
                 <Download size={20} />
                 Download PDF
@@ -165,7 +165,7 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
                     placeholder="Your Name"
                   />
                 </div>
@@ -181,7 +181,7 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
                     placeholder="your.email@example.com"
                   />
                 </div>
@@ -214,14 +214,14 @@ const Contact = () => {
                   onChange={handleInputChange}
                   required
                   rows={5}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors resize-vertical"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-vertical"
                   placeholder="Tell me about your project, opportunity, or just say hello!"
                 />
               </div>
               
               <button
                 type="submit"
-                className="w-full py-3 px-6 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 bg-primary-600 hover:bg-primary-700 text-white"
+                className="w-full py-3 px-6 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white"
               >
                 <Send size={20} />
                 Send Message
