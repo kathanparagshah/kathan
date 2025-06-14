@@ -163,7 +163,7 @@ function NeuralNetwork() {
       });
       
       // Create signals from this neuron
-      const newSignals: Signal[] = nearestNeuron.connections.map(connection => ({
+      const newSignals: Signal[] = (nearestNeuron as Neuron).connections.map(connection => ({
         id: signalIdCounter.current++,
         fromNeuron: nearestNeuron!.id,
         toNeuron: connection.targetId,
