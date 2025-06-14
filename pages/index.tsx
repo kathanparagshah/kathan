@@ -5,33 +5,34 @@ import About from '@/components/About'
 import Skills from '@/components/Skills'
 import Experience from '@/components/Experience'
 import Projects from '@/components/Projects'
+import InteractiveDemo from '@/components/InteractiveDemo'
 import Contact from '@/components/Contact'
-import Footer from '@/components/Footer'
+import NeuralNetworkBackground from '@/components/NeuralNetworkBackground'
 
 export default function Home() {
   return (
     <>
       <Head>
-        <title>Kathan - Software Engineer & CS Major</title>
+        <title>Kathan Parag Shah - CS & Economics Double Major</title>
         <meta 
           name="description" 
-          content="Software Engineer and Computer Science Major passionate about building innovative solutions with clean code and modern technologies. View my portfolio, projects, and experience." 
+          content="CS & Economics Double Major passionate about the intersection of technology and economics. Explore interactive demos, 3D visualizations, and innovative projects." 
         />
-        <meta name="keywords" content="software engineer, computer science, web developer, full stack, react, next.js, portfolio" />
-        <meta name="author" content="Kathan" />
+        <meta name="keywords" content="computer science, economics, data science, react, next.js, three.js, portfolio, interactive demos, financial modeling" />
+        <meta name="author" content="Kathan Parag Shah" />
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://yourwebsite.com/" />
-        <meta property="og:title" content="Kathan - Software Engineer & CS Major" />
-        <meta property="og:description" content="Software Engineer and Computer Science Major passionate about building innovative solutions with clean code and modern technologies." />
+        <meta property="og:title" content="Kathan Parag Shah - CS & Economics Double Major" />
+        <meta property="og:description" content="CS & Economics Double Major passionate about the intersection of technology and economics. Explore interactive demos, 3D visualizations, and innovative projects." />
         <meta property="og:image" content="https://yourwebsite.com/og-image.jpg" />
         
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://yourwebsite.com/" />
-        <meta property="twitter:title" content="Kathan - Software Engineer & CS Major" />
-        <meta property="twitter:description" content="Software Engineer and Computer Science Major passionate about building innovative solutions with clean code and modern technologies." />
+        <meta property="twitter:title" content="Kathan Parag Shah - CS & Economics Double Major" />
+        <meta property="twitter:description" content="CS & Economics Double Major passionate about the intersection of technology and economics. Explore interactive demos, 3D visualizations, and innovative projects." />
         <meta property="twitter:image" content="https://yourwebsite.com/og-image.jpg" />
         
         {/* Additional SEO */}
@@ -46,39 +47,98 @@ export default function Home() {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              "name": "Kathan",
-              "jobTitle": "Software Engineer",
-              "description": "Software Engineer and Computer Science Major",
+              "name": "Kathan Parag Shah",
+              "jobTitle": "CS & Economics Student",
+              "description": "CS & Economics Double Major passionate about technology and economics",
               "url": "https://yourwebsite.com",
               "sameAs": [
-                "https://github.com/username",
-                "https://linkedin.com/in/username"
+                "https://github.com/kathanshah",
+                "https://linkedin.com/in/kathan-shah"
               ],
               "knowsAbout": [
-                "Software Engineering",
-                "Web Development",
+                "Computer Science",
+                "Economics",
+                "Data Science",
+                "Financial Modeling",
                 "React",
                 "Next.js",
-                "TypeScript",
-                "Node.js"
+                "Three.js",
+                "Python",
+                "TypeScript"
               ]
             })
           }}
         />
       </Head>
 
-      <div className="min-h-screen">
-        <Navigation />
-        <main>
-          <Hero />
-          <About />
-          <Projects />
-          <Experience />
-          <Skills />
-          <Contact />
-        </main>
-        <Footer />
-      </div>
+      <div className="min-h-screen bg-black text-gray-100 overflow-x-hidden">
+          <NeuralNetworkBackground />
+          <Navigation />
+          
+          <main>
+            {/* Hero Section */}
+            <section id="hero" className="relative">
+              <Hero />
+            </section>
+            
+            {/* About Section */}
+            <section id="about" className="relative py-20">
+              <About />
+            </section>
+            
+            {/* Skills Section */}
+            <section id="skills" className="relative py-20">
+              <Skills />
+            </section>
+            
+            {/* Experience Section */}
+            <section id="experience" className="relative py-20">
+              <Experience />
+            </section>
+            
+            {/* Projects Section */}
+            <section id="projects" className="relative py-20">
+              <Projects />
+            </section>
+            
+            {/* Interactive Demos Section */}
+            <section id="demos" className="relative py-20">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center mb-16">
+                  <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-6">
+                    Interactive <span className="text-primary-400">Demos</span>
+                  </h2>
+                  <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+                    Explore interactive visualizations and tools that demonstrate the intersection of economics and technology.
+                  </p>
+                </div>
+                
+                <div className="mb-16">
+                  <InteractiveDemo />
+                </div>
+              </div>
+            </section>
+            
+            {/* Contact Section */}
+            <section id="contact" className="relative py-20">
+              <Contact />
+            </section>
+          </main>
+          
+          {/* Footer */}
+          <footer className="border-t border-gray-700/50 py-8" style={{backgroundColor: 'var(--color-bg-primary)'}}>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center">
+                <p className="text-gray-400">
+                  © 2024 Kathan Parag Shah. Built with Next.js, React, and Three.js.
+                </p>
+                <p className="text-gray-500 text-sm mt-2">
+                  Designed for performance, accessibility, and visual impact.
+                </p>
+              </div>
+            </div>
+          </footer>
+        </div>
     </>
   )
 }

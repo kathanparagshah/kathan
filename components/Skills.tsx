@@ -1,293 +1,795 @@
-import { BarChart3, Database, Brain, TrendingUp, Code, Globe } from 'lucide-react'
+'use client'
 
-const Skills = () => {
-  const additionalSkills = [
-    'Statistical Analysis', 'A/B Testing', 'Time Series Analysis', 
-    'Predictive Modeling', 'Regression Analysis', 'Web Scraping',
-    'Data Cleaning', 'ETL Processes', 'Business Intelligence', 
-    'Data Storytelling', 'Hypothesis Testing', 'API Integration',
-    'Machine Learning', 'Deep Learning', 'Cloud Architecture',
-    'AWS', 'Data Engineering', 'DevOps', 'TypeScript',
-    'Redux', 'Node.js', 'Spring Boot', 'Golang',
-    'Data Structures & Algorithms', 'Microservices', 'Docker',
-    'Kubernetes', 'CI/CD', 'Agile Methodology', 'Matplotlib',
-    'Seaborn', 'Pandas', 'NumPy', 'HTML 5', 'Vanilla JavaScript',
-    'JavaScript', 'Information Technology Infrastructure', 'Technical Support',
-    'Raspberry Pi', 'Digital Marketing', 'Java', 'Communication',
-    'Public Speaking', 'FTP', 'PhpMyAdmin', 'PHP', 'MySQL',
-    'HTML', 'CSS', 'Cybersecurity', 'Artificial Intelligence',
-    'Computer Ethics', 'Generative AI'
-  ]
+import React, { Suspense, useState, useEffect, useCallback } from 'react'
+import { motion } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
+import { Canvas, useFrame } from '@react-three/fiber'
+import { OrbitControls, Html, Center, Text } from '@react-three/drei'
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
+import * as THREE from 'three'
+import { Code, Database, BarChart3, Brain, Cpu, Globe } from 'lucide-react'
 
-  const skillCategories = [
-    {
-      title: 'Programming & Data Science',
-      icon: '',
-      skills: [
-        { 
-          name: 'Python', 
-          level: 85, 
-          logo: (
-            <svg width="20" height="20" viewBox="0 0 256 255" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient x1="12.959%" y1="12.039%" x2="79.639%" y2="78.201%" id="a">
-                  <stop stopColor="#387EB8" offset="0%"/>
-                  <stop stopColor="#366994" offset="100%"/>
-                </linearGradient>
-                <linearGradient x1="19.128%" y1="20.579%" x2="90.742%" y2="88.429%" id="b">
-                  <stop stopColor="#FFE052" offset="0%"/>
-                  <stop stopColor="#FFC331" offset="100%"/>
-                </linearGradient>
-              </defs>
-              <path d="M126.916.072c-64.832 0-60.784 28.115-60.784 28.115l.072 29.128h61.868v8.745H41.631S.145 61.355.145 126.77c0 65.417 36.21 63.097 36.21 63.097h21.61v-30.356s-1.165-36.21 35.632-36.21h61.362s34.475.557 34.475-33.319V33.97S194.67.072 126.916.072zM92.802 19.66a11.12 11.12 0 0 1 11.13 11.13 11.12 11.12 0 0 1-11.13 11.13 11.12 11.12 0 0 1-11.13-11.13 11.12 11.12 0 0 1 11.13-11.13z" fill="url(#a)"/>
-              <path d="M128.757 254.126c64.832 0 60.784-28.115 60.784-28.115l-.072-29.127H127.6v-8.745h86.441s41.486 4.705 41.486-60.712c0-65.416-36.21-63.096-36.21-63.096h-21.61v30.355s1.165 36.21-35.632 36.21h-61.362s-34.475-.557-34.475 33.32v56.013s-5.235 33.897 62.518 33.897zm34.114-19.586a11.12 11.12 0 0 1-11.13-11.13 11.12 11.12 0 0 1 11.13-11.131 11.12 11.12 0 0 1 11.13 11.13 11.12 11.12 0 0 1-11.13 11.13z" fill="url(#b)"/>
-            </svg>
-          )
-        },
-        { 
-          name: 'SQL', 
-          level: 80, 
-          logo: (
-            <svg width="20" height="20" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <rect width="100" height="100" fill="#336791" rx="10"/>
-              <text x="50" y="60" fontSize="24" fill="white" textAnchor="middle" fontFamily="monospace" fontWeight="bold">SQL</text>
-            </svg>
-          )
-        },
-        { 
-          name: 'Pandas', 
-          level: 82, 
-          logo: (
-            <svg width="20" height="20" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <rect width="100" height="100" fill="#150458" rx="10"/>
-              <circle cx="30" cy="30" r="8" fill="white"/>
-              <circle cx="70" cy="30" r="8" fill="white"/>
-              <circle cx="30" cy="70" r="8" fill="white"/>
-              <circle cx="70" cy="70" r="8" fill="white"/>
-              <rect x="25" y="45" width="10" height="20" fill="white"/>
-              <rect x="65" y="45" width="10" height="20" fill="white"/>
-            </svg>
-          )
-        },
-        { 
-          name: 'NumPy', 
-          level: 78, 
-          logo: (
-            <svg width="20" height="20" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <rect width="100" height="100" fill="#013243" rx="10"/>
-              <polygon points="20,20 50,35 80,20 80,80 50,65 20,80" fill="#4DABCF"/>
-              <polygon points="20,20 50,35 50,65 20,80" fill="#4D77CF"/>
-            </svg>
-          )
-        },
-        { 
-          name: 'Scikit-learn', 
-          level: 75, 
-          logo: (
-            <svg width="20" height="20" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <rect width="100" height="100" fill="#F7931E" rx="10"/>
-              <circle cx="30" cy="30" r="6" fill="white"/>
-              <circle cx="70" cy="30" r="6" fill="white"/>
-              <circle cx="50" cy="50" r="6" fill="white"/>
-              <circle cx="30" cy="70" r="6" fill="white"/>
-              <circle cx="70" cy="70" r="6" fill="white"/>
-              <line x1="30" y1="30" x2="50" y2="50" stroke="white" strokeWidth="2"/>
-              <line x1="70" y1="30" x2="50" y2="50" stroke="white" strokeWidth="2"/>
-              <line x1="50" y1="50" x2="30" y2="70" stroke="white" strokeWidth="2"/>
-              <line x1="50" y1="50" x2="70" y2="70" stroke="white" strokeWidth="2"/>
-            </svg>
-          )
-        }
-      ]
-    },
-    {
-      title: 'Analytics & Visualization',
-      icon: '',
-      skills: [
-        { 
-          name: 'Tableau', 
-          level: 70, 
-          logo: (
-            <svg width="20" height="20" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <rect width="100" height="100" fill="#E97627" rx="10"/>
-              <rect x="20" y="40" width="60" height="8" fill="white"/>
-              <rect x="46" y="20" width="8" height="60" fill="white"/>
-              <rect x="30" y="30" width="40" height="4" fill="white"/>
-              <rect x="30" y="66" width="40" height="4" fill="white"/>
-              <rect x="35" y="25" width="4" height="50" fill="white"/>
-              <rect x="61" y="25" width="4" height="50" fill="white"/>
-            </svg>
-          )
-        },
-        { 
-          name: 'Excel (Advanced)', 
-          level: 85, 
-          logo: (
-            <svg width="20" height="20" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <rect width="100" height="100" fill="#217346" rx="10"/>
-              <text x="50" y="60" fontSize="24" fill="white" textAnchor="middle" fontFamily="sans-serif" fontWeight="bold">X</text>
-            </svg>
-          )
-        },
-        { 
-          name: 'Matplotlib/Seaborn', 
-          level: 75, 
-          logo: (
-            <svg width="20" height="20" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <rect width="100" height="100" fill="#11557c" rx="10"/>
-              <path d="M20 80 Q30 60 40 70 Q50 50 60 65 Q70 45 80 60" stroke="white" strokeWidth="3" fill="none"/>
-              <circle cx="25" cy="75" r="3" fill="#ff7f0e"/>
-              <circle cx="40" cy="70" r="3" fill="#2ca02c"/>
-              <circle cx="60" cy="65" r="3" fill="#d62728"/>
-              <circle cx="75" cy="60" r="3" fill="#9467bd"/>
-            </svg>
-          )
-        },
-        { 
-          name: 'Power BI', 
-          level: 65, 
-          logo: (
-            <svg width="20" height="20" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <rect width="100" height="100" fill="#F2C811" rx="10"/>
-              <rect x="20" y="60" width="15" height="25" fill="#333"/>
-              <rect x="40" y="45" width="15" height="40" fill="#333"/>
-              <rect x="60" y="30" width="15" height="55" fill="#333"/>
-            </svg>
-          )
-        },
-        { 
-          name: 'Jupyter Notebooks', 
-          level: 80, 
-          logo: (
-            <svg width="20" height="20" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <rect width="100" height="100" fill="#F37626" rx="10"/>
-              <circle cx="30" cy="30" r="8" fill="#9E9E9E"/>
-              <circle cx="70" cy="30" r="8" fill="#F37626"/>
-              <circle cx="50" cy="70" r="8" fill="#9E9E9E"/>
-            </svg>
-          )
-        }
-      ]
-    },
-    {
-      title: 'Databases & Cloud',
-      icon: '',
-      skills: [
-        { 
-          name: 'SQL', 
-          level: 80, 
-          logo: (
-            <svg width="20" height="20" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <rect width="100" height="100" fill="#336791" rx="10"/>
-              <text x="50" y="60" fontSize="24" fill="white" textAnchor="middle" fontFamily="monospace" fontWeight="bold">SQL</text>
-            </svg>
-          )
-        },
-        { 
-          name: 'PostgreSQL', 
-          level: 70, 
-          logo: (
-            <svg width="20" height="20" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <rect width="100" height="100" fill="#336791" rx="10"/>
-              <path d="M30 25 Q50 15 70 25 Q75 35 70 45 Q50 55 30 45 Q25 35 30 25" fill="white"/>
-              <ellipse cx="50" cy="60" rx="20" ry="8" fill="white"/>
-              <ellipse cx="50" cy="75" rx="15" ry="6" fill="white"/>
-            </svg>
-          )
-        },
-        { 
-          name: 'AWS', 
-          level: 60, 
-          logo: (
-            <svg width="20" height="20" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <rect width="100" height="100" fill="#232F3E" rx="10"/>
-              <path d="M20 60 Q30 50 40 60 Q50 50 60 60 Q70 50 80 60" stroke="#FF9900" strokeWidth="3" fill="none"/>
-              <text x="50" y="40" fontSize="12" fill="#FF9900" textAnchor="middle" fontFamily="sans-serif" fontWeight="bold">AWS</text>
-            </svg>
-          )
-        },
-        { 
-          name: 'MongoDB', 
-          level: 65, 
-          logo: (
-            <svg width="20" height="20" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <rect width="100" height="100" fill="#4DB33D" rx="10"/>
-              <path d="M50 20 Q60 30 55 50 Q50 70 45 50 Q40 30 50 20" fill="white"/>
-              <rect x="48" y="65" width="4" height="15" fill="white"/>
-            </svg>
-          )
-        },
-        { 
-          name: 'BigQuery', 
-          level: 55, 
-          logo: (
-            <svg width="20" height="20" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <rect width="100" height="100" fill="#4285F4" rx="10"/>
-              <polygon points="30,30 70,30 60,50 40,50" fill="white"/>
-              <polygon points="40,50 60,50 70,70 30,70" fill="white"/>
-              <text x="50" y="45" fontSize="8" fill="#4285F4" textAnchor="middle" fontFamily="sans-serif" fontWeight="bold">BQ</text>
-            </svg>
-          )
-        }
-      ]
+// 3D Pie Slice Component
+function PieSlice3D({ 
+  startAngle, 
+  endAngle, 
+  radius, 
+  color, 
+  label, 
+  percentage, 
+  position,
+  onHoverChange 
+}: { 
+  startAngle: number, 
+  endAngle: number, 
+  radius: number, 
+  color: string, 
+  label: string, 
+  percentage: number, 
+  position: [number, number, number],
+  onHoverChange?: (hovered: boolean) => void 
+}) {
+  const [hovered, setHovered] = useState(false)
+  
+  // Create proper pie slice geometry
+  const sliceGeometry = React.useMemo(() => {
+    const geometry = new THREE.BufferGeometry()
+    const vertices = []
+    const indices = []
+    const normals = []
+    
+    const segments = 32
+    const angleStep = (endAngle - startAngle) / segments
+    const height = 0.5
+    
+    // Center vertices (top and bottom)
+    vertices.push(0, height / 2, 0) // top center
+    vertices.push(0, -height / 2, 0) // bottom center
+    
+    // Edge vertices
+    for (let i = 0; i <= segments; i++) {
+      const angle = startAngle + i * angleStep
+      const x = Math.cos(angle) * radius
+      const z = Math.sin(angle) * radius
+      
+      vertices.push(x, height / 2, z) // top edge
+      vertices.push(x, -height / 2, z) // bottom edge
     }
+    
+    // Top face triangles
+    for (let i = 0; i < segments; i++) {
+      indices.push(0, 2 + i * 2, 2 + (i + 1) * 2)
+    }
+    
+    // Bottom face triangles
+    for (let i = 0; i < segments; i++) {
+      indices.push(1, 3 + (i + 1) * 2, 3 + i * 2)
+    }
+    
+    // Side faces
+    for (let i = 0; i < segments; i++) {
+      const topCurrent = 2 + i * 2
+      const bottomCurrent = 3 + i * 2
+      const topNext = 2 + (i + 1) * 2
+      const bottomNext = 3 + (i + 1) * 2
+      
+      // Two triangles per side face
+      indices.push(topCurrent, bottomCurrent, topNext)
+      indices.push(bottomCurrent, bottomNext, topNext)
+    }
+    
+    // Start and end faces
+    indices.push(0, 1, 2) // start face triangle 1
+    indices.push(1, 3, 2) // start face triangle 2
+    
+    const lastTop = 2 + segments * 2
+    const lastBottom = 3 + segments * 2
+    indices.push(0, lastTop, 1) // end face triangle 1
+    indices.push(1, lastTop, lastBottom) // end face triangle 2
+    
+    geometry.setIndex(indices)
+    geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3))
+    geometry.computeVertexNormals()
+    
+    return geometry
+  }, [startAngle, endAngle, radius])
+  
+  // Calculate label position - positioned on the slice surface
+  const midAngle = (startAngle + endAngle) / 2
+  const labelRadius = radius * 0.7
+  const labelX = Math.cos(midAngle) * labelRadius
+  const labelZ = Math.sin(midAngle) * labelRadius
+  
+  // Calculate edge position for percentage - positioned outside the pie
+  const edgeRadius = radius * 1.5
+  const edgeX = Math.cos(midAngle) * edgeRadius
+  const edgeZ = Math.sin(midAngle) * edgeRadius
+  
+  return (
+    <group position={position}>
+      <mesh
+        geometry={sliceGeometry}
+        onPointerEnter={() => {
+          setHovered(true)
+          onHoverChange?.(true)
+        }}
+        onPointerLeave={() => {
+          setHovered(false)
+          onHoverChange?.(false)
+        }}
+        scale={hovered ? [1.5, 1.8, 1.5] : [1, 1, 1]}
+        position={hovered ? [0, 0.1, 0] : [0, 0, 0]}
+      >
+        <meshStandardMaterial 
+          color={hovered ? '#ffffff' : color} 
+          emissive={hovered ? '#333333' : '#111111'}
+          emissiveIntensity={0.2}
+        />
+      </mesh>
+      
+      {/* Skill name - always visible, scales with slice */}
+      <Html
+        position={[labelX, hovered ? 0.6 : 0.3, labelZ]}
+        center
+        distanceFactor={6}
+        style={{
+          pointerEvents: 'none',
+          userSelect: 'none',
+          transform: hovered ? 'scale(1.5)' : 'scale(1)'
+        }}
+      >
+        <div className={`text-white font-sans ${hovered ? 'text-lg' : 'text-sm'} font-bold whitespace-nowrap text-center bg-black bg-opacity-60 px-2 py-1 rounded`}>
+          {label}
+        </div>
+      </Html>
+      
+      {/* Percentage label - positioned at slice edge, only show on hover */}
+      {hovered && (
+        <Html
+          position={[edgeX, 0, edgeZ]}
+          center
+          distanceFactor={6}
+          style={{
+            pointerEvents: 'none',
+            userSelect: 'none',
+            transform: 'scale(1.2)'
+          }}
+        >
+          <div className="text-yellow-300 font-sans text-sm font-bold whitespace-nowrap text-center bg-black bg-opacity-90 px-1 py-0.5 rounded shadow-lg">
+            {`${percentage}%`}
+          </div>
+        </Html>
+      )}
+    </group>
+  )
+}
+
+// Programming & Data Science 3D Pie Chart
+function ProgrammingSkills3DPie() {
+  const [isAnySliceHovered, setIsAnySliceHovered] = useState(false)
+  
+  const skillsData = [
+    { name: 'Python', percentage: 15 },
+    { name: 'SQL', percentage: 12 },
+    { name: 'Pandas', percentage: 12 },
+    { name: 'NumPy', percentage: 10 },
+    { name: 'Scikit-learn', percentage: 10 },
+    { name: 'Machine Learning', percentage: 10 },
+    { name: 'Data Structures & Algorithms', percentage: 8 },
+    { name: 'Data Cleaning', percentage: 7 },
+    { name: 'Deep Learning', percentage: 6 },
+    { name: 'Generative AI', percentage: 4 },
+    { name: 'Web Scraping', percentage: 3 },
+    { name: 'API Integration', percentage: 3 }
+  ]
+  
+  // Calculate total and angles for pie slices
+  const total = skillsData.reduce((sum, skill) => sum + skill.percentage, 0)
+  let currentAngle = 0
+  
+  const pieSlices = skillsData.map((skill, index) => {
+    const sliceAngle = (skill.percentage / total) * Math.PI * 2
+    const startAngle = currentAngle
+    const endAngle = currentAngle + sliceAngle
+    currentAngle = endAngle
+    
+    // Brighter Color palette
+    const colors = [
+      '#22d3ee', '#a855f7', '#fbbf24', '#f87171', 
+      '#84cc16', '#fb923c', '#818cf8', '#34d399',
+      '#f472b6', '#06d6a0', '#ffbe0b', '#8338ec'
+    ]
+    
+    return {
+      ...skill,
+      startAngle,
+      endAngle,
+      color: colors[index % colors.length]
+    }
+  })
+
+  return (
+    <>
+      <ambientLight intensity={0.6} />
+      <pointLight position={[10, 10, 10]} intensity={0.8} />
+      <pointLight position={[-10, -10, -10]} color="#06b6d4" intensity={0.4} />
+      <pointLight position={[0, 15, 0]} color="#10b981" intensity={0.3} />
+      
+      {pieSlices.map((slice, index) => (
+        <PieSlice3D
+          key={slice.name}
+          startAngle={slice.startAngle}
+          endAngle={slice.endAngle}
+          radius={3}
+          color={slice.color}
+          label={slice.name}
+          percentage={slice.percentage}
+          position={[0, 0, 0]}
+          onHoverChange={setIsAnySliceHovered}
+        />
+      ))}
+      
+      <OrbitControls 
+        enableZoom={true} 
+        autoRotate={!isAnySliceHovered}
+        autoRotateSpeed={1} 
+        minDistance={3}
+        maxDistance={20}
+      />
+    </>
+  )
+}
+
+// Analytics & Visualization 3D Pie Chart
+function AnalyticsSkills3DPie() {
+  const [isAnySliceHovered, setIsAnySliceHovered] = useState(false)
+  
+  const skillsData = [
+    { name: 'Statistical Analysis', percentage: 10 },
+    { name: 'Predictive Modeling', percentage: 10 },
+    { name: 'Matplotlib & Seaborn', percentage: 10 },
+    { name: 'Regression Analysis', percentage: 8 },
+    { name: 'Business Intelligence', percentage: 8 },
+    { name: 'Data Storytelling', percentage: 8 },
+    { name: 'Tableau', percentage: 8 },
+    { name: 'Excel (Advanced)', percentage: 8 },
+    { name: 'Jupyter Notebooks', percentage: 8 },
+    { name: 'Power BI', percentage: 6 },
+    { name: 'A/B Testing', percentage: 4 },
+    { name: 'Time Series Analysis', percentage: 4 },
+    { name: 'Hypothesis Testing', percentage: 4 },
+    { name: 'Communication', percentage: 4 }
+  ]
+  
+  const total = skillsData.reduce((sum, skill) => sum + skill.percentage, 0)
+  let currentAngle = 0
+  
+  const pieSlices = skillsData.map((skill, index) => {
+    const sliceAngle = (skill.percentage / total) * Math.PI * 2
+    const startAngle = currentAngle
+    const endAngle = currentAngle + sliceAngle
+    currentAngle = endAngle
+    
+    // Brighter Color palette for Analytics
+    const colors = [
+      '#22d3ee', '#a855f7', '#fbbf24', '#f87171', 
+      '#84cc16', '#fb923c', '#818cf8', '#34d399',
+      '#f472b6', '#06d6a0', '#ffbe0b', '#8338ec',
+      '#22d3ee', '#f87171'
+    ]
+    
+    return {
+      ...skill,
+      startAngle,
+      endAngle,
+      color: colors[index % colors.length]
+    }
+  })
+
+  return (
+    <>
+      <ambientLight intensity={0.6} />
+      <pointLight position={[10, 10, 10]} intensity={0.8} />
+      <pointLight position={[-10, -10, -10]} color="#06b6d4" intensity={0.4} />
+      <pointLight position={[0, 15, 0]} color="#10b981" intensity={0.3} />
+      
+      {pieSlices.map((slice, index) => (
+        <PieSlice3D
+          key={slice.name}
+          startAngle={slice.startAngle}
+          endAngle={slice.endAngle}
+          radius={3}
+          color={slice.color}
+          label={slice.name}
+          percentage={slice.percentage}
+          position={[0, 0, 0]}
+          onHoverChange={setIsAnySliceHovered}
+        />
+      ))}
+      
+      <OrbitControls 
+        enableZoom={true} 
+        autoRotate={!isAnySliceHovered}
+        autoRotateSpeed={1} 
+        minDistance={3}
+        maxDistance={20}
+      />
+    </>
+  )
+}
+
+// Databases & Cloud 3D Pie Chart
+function DatabasesSkills3DPie() {
+  const [isAnySliceHovered, setIsAnySliceHovered] = useState(false)
+  
+  const skillsData = [
+    { name: 'Data Engineering', percentage: 18 },
+    { name: 'ETL Processes', percentage: 18 },
+    { name: 'Cloud Architecture', percentage: 12 },
+    { name: 'AWS', percentage: 12 },
+    { name: 'Docker', percentage: 12 },
+    { name: 'PostgreSQL', percentage: 8 },
+    { name: 'MySQL', percentage: 8 },
+    { name: 'MongoDB', percentage: 6 },
+    { name: 'BigQuery', percentage: 6 }
+  ]
+  
+  const total = skillsData.reduce((sum, skill) => sum + skill.percentage, 0)
+  let currentAngle = 0
+  
+  const pieSlices = skillsData.map((skill, index) => {
+    const sliceAngle = (skill.percentage / total) * Math.PI * 2
+    const startAngle = currentAngle
+    const endAngle = currentAngle + sliceAngle
+    currentAngle = endAngle
+    
+    // Brighter Color palette for Databases & Cloud
+    const colors = [
+      '#fbbf24', '#f87171', '#84cc16', '#fb923c', 
+      '#818cf8', '#f472b6', '#06d6a0', '#22d3ee',
+      '#34d399'
+    ]
+    
+    return {
+      ...skill,
+      startAngle,
+      endAngle,
+      color: colors[index % colors.length]
+    }
+  })
+
+  return (
+    <>
+      <ambientLight intensity={0.6} />
+      <pointLight position={[10, 10, 10]} intensity={0.8} />
+      <pointLight position={[-10, -10, -10]} color="#06b6d4" intensity={0.4} />
+      <pointLight position={[0, 15, 0]} color="#10b981" intensity={0.3} />
+      
+      {pieSlices.map((slice, index) => (
+        <PieSlice3D
+          key={slice.name}
+          startAngle={slice.startAngle}
+          endAngle={slice.endAngle}
+          radius={3}
+          color={slice.color}
+          label={slice.name}
+          percentage={slice.percentage}
+          position={[0, 0, 0]}
+          onHoverChange={setIsAnySliceHovered}
+        />
+      ))}
+      
+      <OrbitControls 
+        enableZoom={true} 
+        autoRotate={!isAnySliceHovered}
+        autoRotateSpeed={1} 
+        minDistance={3}
+        maxDistance={20}
+      />
+    </>
+  )
+}
+
+// Programming & Data Science 2D Bar Chart
+function ProgrammingSkills2DBar() {
+  const skillsData = [
+    { name: 'Python', percentage: 15 },
+    { name: 'SQL', percentage: 12 },
+    { name: 'Pandas', percentage: 12 },
+    { name: 'NumPy', percentage: 10 },
+    { name: 'Scikit-learn', percentage: 10 },
+    { name: 'Machine Learning', percentage: 10 },
+    { name: 'Data Structures & Algorithms', percentage: 8 },
+    { name: 'Data Cleaning', percentage: 7 },
+    { name: 'Deep Learning', percentage: 6 },
+    { name: 'Generative AI', percentage: 4 },
+    { name: 'Web Scraping', percentage: 3 },
+    { name: 'API Integration', percentage: 3 }
   ]
 
   return (
-    <section id="skills" className="py-20 bg-gray-50">
-      <div className="container-max section-padding">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">
-          Skills & Technologies
-        </h2>
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {skillCategories.map((category, index) => (
-            <div key={index} className="bg-white rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="text-primary">
-                  {category.icon}
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900">
-                  {category.title}
-                </h3>
-              </div>
-              
-              <div className="space-y-4">
-                {category.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex}>
-                    <div className="flex justify-between items-center mb-2">
-                      <div className="flex items-center gap-2">
-                        <div className="bg-white p-1 rounded shadow-sm">
-                          {skill.logo}
-                        </div>
-                        <span className="text-gray-700 font-medium">{skill.name}</span>
-                      </div>
-                      <span className="text-sm text-gray-500">{skill.level}%</span>
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2">
-                      <div 
-                        className="bg-primary h-2 rounded-full transition-all duration-1000 ease-out"
-                        style={{ width: `${skill.level}%` }}
-                      ></div>
-                    </div>
-                  </div>
-                ))}
+    <ResponsiveContainer width="100%" height={500}>
+      <BarChart data={skillsData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+        <CartesianGrid strokeDasharray="3 3" stroke="#000000" />
+        <XAxis 
+          dataKey="name" 
+          stroke="#9CA3AF" 
+          fontSize={12}
+          angle={-45}
+          textAnchor="end"
+          height={80}
+        />
+        <YAxis stroke="#9CA3AF" />
+        <Tooltip 
+          contentStyle={{ 
+            backgroundColor: '#1F2937', 
+            border: '1px solid #374151',
+            borderRadius: '8px',
+            color: '#F3F4F6'
+          }}
+          formatter={(value) => [`${value}%`, 'Proficiency']}
+        />
+        <Bar 
+          dataKey="percentage" 
+          fill="url(#programmingGradient)" 
+          radius={[4, 4, 0, 0]}
+        />
+        <defs>
+          <linearGradient id="programmingGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#10b981" />
+            <stop offset="100%" stopColor="#059669" />
+          </linearGradient>
+        </defs>
+      </BarChart>
+    </ResponsiveContainer>
+  )
+}
+
+// Analytics & Visualization 2D Bar Chart
+function AnalyticsSkills2DBar() {
+  const skillsData = [
+    { name: 'Statistical Analysis', percentage: 10 },
+    { name: 'Predictive Modeling', percentage: 10 },
+    { name: 'Matplotlib & Seaborn', percentage: 10 },
+    { name: 'Power BI', percentage: 8 },
+    { name: 'Jupyter Notebooks', percentage: 8 },
+    { name: 'Excel (Advanced)', percentage: 8 },
+    { name: 'Tableau', percentage: 8 },
+    { name: 'Data Storytelling', percentage: 8 },
+    { name: 'Business Intelligence', percentage: 8 },
+    { name: 'Regression Analysis', percentage: 8 },
+    { name: 'A/B Testing', percentage: 6 },
+    { name: 'Communication', percentage: 4 },
+    { name: 'Hypothesis Testing', percentage: 4 },
+    { name: 'Time Series Analysis', percentage: 4 }
+  ]
+
+  return (
+    <ResponsiveContainer width="100%" height={500}>
+      <BarChart data={skillsData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+        <CartesianGrid strokeDasharray="3 3" stroke="#000000" />
+        <XAxis 
+          dataKey="name" 
+          stroke="#9CA3AF" 
+          fontSize={12}
+          angle={-45}
+          textAnchor="end"
+          height={80}
+        />
+        <YAxis stroke="#9CA3AF" />
+        <Tooltip 
+          contentStyle={{ 
+            backgroundColor: '#1F2937', 
+            border: '1px solid #374151',
+            borderRadius: '8px',
+            color: '#F3F4F6'
+          }}
+          formatter={(value) => [`${value}%`, 'Proficiency']}
+        />
+        <Bar 
+          dataKey="percentage" 
+          fill="url(#analyticsGradient)" 
+          radius={[4, 4, 0, 0]}
+        />
+        <defs>
+          <linearGradient id="analyticsGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#06b6d4" />
+            <stop offset="100%" stopColor="#0891b2" />
+          </linearGradient>
+        </defs>
+      </BarChart>
+    </ResponsiveContainer>
+  )
+}
+
+// Databases & Cloud 2D Bar Chart
+function DatabasesSkills2DBar() {
+  const skillsData = [
+    { name: 'Data Engineering', percentage: 18 },
+    { name: 'ETL Processes', percentage: 18 },
+    { name: 'Docker', percentage: 12 },
+    { name: 'Cloud Architecture', percentage: 12 },
+    { name: 'AWS', percentage: 12 },
+    { name: 'PostgreSQL', percentage: 8 },
+    { name: 'MySQL', percentage: 8 },
+    { name: 'MongoDB', percentage: 6 },
+    { name: 'BigQuery', percentage: 6 }
+  ]
+
+  return (
+    <ResponsiveContainer width="100%" height={500}>
+      <BarChart data={skillsData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+        <CartesianGrid strokeDasharray="3 3" stroke="#000000" />
+        <XAxis 
+          dataKey="name" 
+          stroke="#9CA3AF" 
+          fontSize={12}
+          angle={-45}
+          textAnchor="end"
+          height={80}
+        />
+        <YAxis stroke="#9CA3AF" />
+        <Tooltip 
+          contentStyle={{ 
+            backgroundColor: '#1F2937', 
+            border: '1px solid #374151',
+            borderRadius: '8px',
+            color: '#F3F4F6'
+          }}
+          formatter={(value) => [`${value}%`, 'Proficiency']}
+        />
+        <Bar 
+          dataKey="percentage" 
+          fill="url(#databasesGradient)" 
+          radius={[4, 4, 0, 0]}
+        />
+        <defs>
+          <linearGradient id="databasesGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#f59e0b" />
+            <stop offset="100%" stopColor="#d97706" />
+          </linearGradient>
+        </defs>
+      </BarChart>
+    </ResponsiveContainer>
+  )
+}
+
+// Custom Tooltip Component
+const CustomTooltip = ({ active, payload, label }: any) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-dark-surface border border-gray-700/50 rounded-lg p-3 shadow-lg">
+        <p className="text-gray-200 font-medium">{`${label}: ${payload[0].value}%`}</p>
+      </div>
+    )
+  }
+  return null
+}
+
+// Skills 3D Chart with WebGL Error Handling
+const Skills3DChart = ({ 
+  skillCategory, 
+  ProgrammingSkills3DPie, 
+  AnalyticsSkills3DPie, 
+  DatabasesSkills3DPie 
+}: {
+  skillCategory: string
+  ProgrammingSkills3DPie: React.ComponentType
+  AnalyticsSkills3DPie: React.ComponentType
+  DatabasesSkills3DPie: React.ComponentType
+}) => {
+  const [webglSupported, setWebglSupported] = useState(true)
+  const [hasError, setHasError] = useState(false)
+
+  useEffect(() => {
+    // Check WebGL support
+    try {
+      const canvas = document.createElement('canvas')
+      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl')
+      if (!gl) {
+        setWebglSupported(false)
+      }
+    } catch (e) {
+      setWebglSupported(false)
+    }
+  }, [])
+
+  const handleError = useCallback(() => {
+    setHasError(true)
+  }, [])
+
+  if (!webglSupported || hasError) {
+    // Fallback to 2D charts when WebGL is not supported
+    return (
+      <>
+        <div className="h-[500px] w-full">
+          {skillCategory === 'programming' && <ProgrammingSkills2DBar />}
+          {skillCategory === 'analytics' && <AnalyticsSkills2DBar />}
+          {skillCategory === 'databases' && <DatabasesSkills2DBar />}
+        </div>
+
+      </>
+    )
+  }
+
+  return (
+    <>
+      <div className="h-[500px] w-full">
+        <Canvas 
+          camera={{ position: [0, 6, 10], fov: 60 }}
+          onError={handleError}
+          gl={{ 
+            antialias: false,
+            alpha: true,
+            powerPreference: 'default'
+          }}
+        >
+          <Suspense fallback={null}>
+            {skillCategory === 'programming' && <ProgrammingSkills3DPie />}
+            {skillCategory === 'analytics' && <AnalyticsSkills3DPie />}
+            {skillCategory === 'databases' && <DatabasesSkills3DPie />}
+          </Suspense>
+        </Canvas>
+      </div>
+      <p className="text-gray-400 text-center mt-4">
+        Drag to rotate • Scroll to zoom • Hover over slices for details
+      </p>
+    </>
+  )
+}
+
+const Skills = () => {
+  const [ref, inView] = useInView({
+    threshold: 0.3,
+    triggerOnce: true
+  })
+
+  const [chartType, setChartType] = useState('3d')
+  const [skillCategory, setSkillCategory] = useState('programming')
+
+
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: 'easeOut'
+      }
+    }
+  }
+
+  return (
+    <section id="skills" className="py-20 bg-dark-bg">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          ref={ref}
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+        >
+          {/* Header */}
+          <motion.div variants={itemVariants} className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-6">
+              My <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-cyan">Skills</span>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              A comprehensive overview of my technical expertise and economic knowledge, 
+              visualized through interactive 3D charts and detailed breakdowns.
+            </p>
+          </motion.div>
+
+          {/* Skill Category Toggle */}
+          <motion.div variants={itemVariants} className="mb-8">
+            <div className="flex justify-center">
+              <div className="rounded-lg p-1">
+                <button
+                  onClick={() => setSkillCategory('programming')}
+                  className={`px-4 py-3 rounded-md font-medium transition-all duration-300 border ${
+                    skillCategory === 'programming'
+                      ? 'border-primary-500 text-primary-500'
+                      : 'border-gray-700/50 text-gray-400 hover:text-gray-200 hover:border-gray-600'
+                  }`}
+                >
+                  Programming & Data Science
+                </button>
+                <button
+                  onClick={() => setSkillCategory('analytics')}
+                  className={`px-4 py-3 rounded-md font-medium transition-all duration-300 border ${
+                    skillCategory === 'analytics'
+                      ? 'border-accent-cyan text-accent-cyan'
+                      : 'border-gray-700/50 text-gray-400 hover:text-gray-200 hover:border-gray-600'
+                  }`}
+                >
+                  Analytics & Visualization
+                </button>
+                <button
+                  onClick={() => setSkillCategory('databases')}
+                  className={`px-4 py-3 rounded-md font-medium transition-all duration-300 border ${
+                    skillCategory === 'databases'
+                      ? 'border-yellow-500 text-yellow-500'
+                      : 'border-gray-700/50 text-gray-400 hover:text-gray-200 hover:border-gray-600'
+                  }`}
+                >
+                  Databases & Cloud
+                </button>
               </div>
             </div>
-          ))}
-        </div>
-        
-        {/* Additional Skills Tags */}
-        <div className="mt-12 text-center">
-          <h3 className="text-lg font-semibold text-gray-900 mb-6">Additional Skills</h3>
-          <div className="flex flex-wrap justify-center gap-3">
-            {additionalSkills.map((skill, index) => (
-              <span key={index} className="skill-tag">
-                {skill}
-              </span>
-            ))}
-          </div>
-        </div>
+          </motion.div>
+
+          {/* Chart Type Toggle */}
+          <motion.div variants={itemVariants} className="mb-8">
+            <div className="flex justify-center">
+              <div className="rounded-lg p-1">
+                <button
+                  onClick={() => setChartType('3d')}
+                  className={`px-6 py-3 rounded-md font-medium transition-all duration-300 border ${
+                    chartType === '3d'
+                      ? 'border-primary-500 text-primary-500'
+                      : 'border-gray-700/50 text-gray-400 hover:text-gray-200 hover:border-gray-600'
+                  }`}
+                >
+                  3D Pie Chart
+                </button>
+                <button
+                  onClick={() => setChartType('2d')}
+                  className={`px-6 py-3 rounded-md font-medium transition-all duration-300 border ${
+                    chartType === '2d'
+                      ? 'border-accent-cyan text-accent-cyan'
+                      : 'border-gray-700/50 text-gray-400 hover:text-gray-200 hover:border-gray-600'
+                  }`}
+                >
+                  2D Bar Chart
+                </button>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Skills Visualization */}
+          <motion.div variants={itemVariants} className="mb-16">
+            <div className="rounded-2xl p-8">
+              <h3 className="text-2xl font-semibold text-gray-100 mb-6 text-center">
+                {skillCategory === 'programming' && 'Programming & Data Science Skill Weighting'}
+                {skillCategory === 'analytics' && 'Analytics & Visualization Skill Weighting'}
+                {skillCategory === 'databases' && 'Databases & Cloud Skill Weighting'}
+              </h3>
+              
+              {chartType === '3d' ? (
+                <Skills3DChart 
+                  skillCategory={skillCategory}
+                  ProgrammingSkills3DPie={ProgrammingSkills3DPie}
+                  AnalyticsSkills3DPie={AnalyticsSkills3DPie}
+                  DatabasesSkills3DPie={DatabasesSkills3DPie}
+                />
+              ) : (
+                <>
+                  <div className="h-[500px] w-full">
+                    {skillCategory === 'programming' && <ProgrammingSkills2DBar />}
+                    {skillCategory === 'analytics' && <AnalyticsSkills2DBar />}
+                    {skillCategory === 'databases' && <DatabasesSkills2DBar />}
+                  </div>
+                  <p className="text-gray-400 text-center mt-4">
+                    Hover over bars for detailed information
+                  </p>
+                </>
+              )}
+            </div>
+          </motion.div>
+
+
+        </motion.div>
       </div>
     </section>
   )

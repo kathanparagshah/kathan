@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from 'next/document'
 
 export default function Document() {
   return (
-    <Html lang="en">
+    <Html lang="en" className="dark">
       <Head>
         <meta charSet="utf-8" />
         <meta name="robots" content="index, follow" />
@@ -11,7 +11,7 @@ export default function Document() {
         <meta property="og:site_name" content="Kathan - Software Engineer" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <body>
+      <body className="bg-black text-white">
         <Main />
         <NextScript />
       </body>

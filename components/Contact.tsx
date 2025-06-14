@@ -1,5 +1,9 @@
-import { useState } from 'react'
-import { Mail, Phone, MapPin, Download, Send, Github, Linkedin } from 'lucide-react'
+'use client'
+
+import React, { useState } from 'react'
+import { motion } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
+import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, ExternalLink } from 'lucide-react'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -8,8 +12,13 @@ const Contact = () => {
     subject: '',
     message: ''
   })
-  const [isSubmitting, setIsSubmitting] = useState(false)
+
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1
+  })
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -20,231 +29,294 @@ const Contact = () => {
     e.preventDefault()
     
     // Create mailto link with form data
-    const { name, email, subject, message } = formData
-    const mailtoLink = `mailto:kathanshah04@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-    )}`
+    const emailBody = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+    const mailtoLink = `mailto:kathanshah04@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(emailBody)}`
     
-    // Open default mail client using window.open for better compatibility
-    window.open(mailtoLink, '_self')
+    // Open user's default mail client
+    window.location.href = mailtoLink
     
-    // Reset form after opening mail client
+    // Clear form after opening mail client
     setFormData({ name: '', email: '', subject: '', message: '' })
     setSubmitStatus('success')
+    
+    // Reset status after 3 seconds
     setTimeout(() => setSubmitStatus('idle'), 3000)
   }
 
+  const contactInfo = [
+    {
+      icon: <Mail className="w-5 h-5" />,
+      label: 'Email',
+      value: 'kathanshah04@gmail.com',
+      href: 'mailto:kathanshah04@gmail.com'
+    },
+    {
+      icon: <Phone className="w-5 h-5" />,
+      label: 'Phone',
+      value: '+1 (602) 815-0971',
+      href: 'tel:+16028150971'
+    },
+    {
+      icon: <MapPin className="w-5 h-5" />,
+      label: 'Location',
+      value: 'Tempe, Arizona',
+      href: 'https://maps.google.com/?q=Tempe,+Arizona'
+    }
+  ]
+
+  const socialLinks = [
+    {
+      icon: <Github className="w-5 h-5" />,
+      label: 'GitHub',
+      href: 'https://github.com/kathanparagshah',
+      color: 'hover:text-gray-300'
+    },
+    {
+      icon: <Linkedin className="w-5 h-5" />,
+      label: 'LinkedIn',
+      href: 'https://www.linkedin.com/in/kathan-shah-90ba43263/',
+      color: 'hover:text-blue-400'
+    },
+    {
+      icon: <Mail className="w-5 h-5" />,
+      label: 'Email',
+      href: 'mailto:kathanshah04@gmail.com',
+      color: 'hover:text-sky-400'
+    }
+  ]
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6 }
+    }
+  }
+
   return (
-    <section id="contact" className="py-20 bg-white">
-      <div className="container-max section-padding">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">
-          Get In Touch
-        </h2>
-        
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12">
-          {/* Contact Information */}
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-6">
-                Let's Connect
-              </h3>
-              <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-                I'm always interested in new opportunities, collaborations, and interesting projects. 
-                Whether you have a question, want to discuss a potential role, or just want to say hi, 
-                I'd love to hear from you!
-              </p>
-            </div>
-            
-            {/* Contact Details */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-4">
-                <div className="bg-blue-50 p-3 rounded-lg">
-              <Mail className="text-blue-600" size={24} />
-                </div>
-                <div>
-                  <p className="font-medium text-gray-900">Email</p>
-                  <a href="mailto:kathanshah04@gmail.com" className="text-blue-600 hover:text-blue-800">
-                    kathanshah04@gmail.com
-                  </a>
-                </div>
-              </div>
-              
-              <div className="flex items-center gap-4">
-                <div className="bg-blue-50 p-3 rounded-lg">
-              <Phone className="text-blue-600" size={24} />
-                </div>
-                <div>
-                  <p className="font-medium text-gray-900">Phone</p>
-                  <a href="tel:+16028150971" className="text-blue-600 hover:text-blue-800">
-                    +1 (602) 815-0971
-                  </a>
-                </div>
-              </div>
-              
-              <div className="flex items-center gap-4">
-                <div className="bg-blue-50 p-3 rounded-lg">
-              <MapPin className="text-blue-600" size={24} />
-                </div>
-                <div>
-                  <p className="font-medium text-gray-900">Location</p>
-                  <p className="text-gray-600">Tempe, Arizona</p>
-                </div>
-              </div>
-            </div>
-            
-            {/* Resume Download */}
-            <div className="bg-gray-50 rounded-lg p-6">
-              <h4 className="text-lg font-semibold text-gray-900 mb-4">
-                Download My Resume
-              </h4>
-              <p className="text-gray-600 mb-4">
-                Get a detailed overview of my experience, skills, and education.
-              </p>
-              <a
-                href="/kathan/Kathan Parag Shah.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center gap-2"
-              >
-                <Download size={20} />
-                Download PDF
-              </a>
-            </div>
-            
-            {/* Social Links */}
-            <div>
-              <h4 className="text-lg font-semibold text-gray-900 mb-4">
-                Connect With Me
-              </h4>
-              <div className="flex gap-4">
-                <a
-                  href="https://github.com/kathanparagshah"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-gray-100 hover:bg-gray-200 p-3 rounded-lg transition-colors"
-                  aria-label="GitHub Profile"
-                >
-                  <Github size={24} className="text-gray-700" />
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/kathan-shah-90ba43263/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-gray-100 hover:bg-gray-200 p-3 rounded-lg transition-colors"
-                  aria-label="LinkedIn Profile"
-                >
-                  <Linkedin size={24} className="text-gray-700" />
-                </a>
-                <a
-                  href="mailto:kathanshah04@gmail.com"
-                  className="bg-gray-100 hover:bg-gray-200 p-3 rounded-lg transition-colors"
-                  aria-label="Email Contact"
-                >
-                  <Mail size={24} className="text-gray-700" />
-                </a>
-              </div>
-            </div>
-          </div>
-          
-          {/* Contact Form */}
-          <div className="bg-gray-50 rounded-lg p-8">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-6">
-              Send Me a Message
-            </h3>
-            
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                    Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors bg-white"
-                    placeholder="Your Name"
-                  />
-                </div>
+    <section id="contact" className="py-20" style={{backgroundColor: 'var(--color-bg-primary)'}}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          ref={ref}
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+        >
+          {/* Section Header */}
+          <motion.div variants={itemVariants} className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-6">
+              Get In <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-cyan">Touch</span>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Let's discuss opportunities, collaborations, or just connect. I'm always interested in 
+              innovative projects at the intersection of technology and economics.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Contact Information */}
+            <motion.div variants={itemVariants} className="space-y-8">
+              <div>
+                <h3 className="text-2xl font-bold text-gray-100 mb-6">Contact Information</h3>
                 
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                    Email *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors bg-white"
-                    placeholder="your.email@example.com"
-                  />
+                <div className="space-y-4">
+                  {contactInfo.map((info, index) => (
+                    <motion.a
+                      key={index}
+                      href={info.href}
+                      target={info.href.startsWith('http') ? '_blank' : undefined}
+                      rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                      className="flex items-center gap-4 p-4 transition-all duration-300 group"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <div className="p-2 text-primary-400 transition-colors duration-300">
+                        {info.icon}
+                      </div>
+                      <div>
+                        <div className="text-sm text-gray-400">{info.label}</div>
+                        <div className="text-gray-100 font-medium group-hover:text-primary-400 transition-colors duration-300">
+                          {info.value}
+                        </div>
+                      </div>
+                      <ExternalLink className="w-4 h-4 text-gray-500 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    </motion.a>
+                  ))}
                 </div>
               </div>
-              
+
+              {/* Social Links */}
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                  Subject *
-                </label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors bg-white"
-                  placeholder="What's this about?"
-                />
+                <h4 className="text-lg font-semibold text-gray-100 mb-4">Connect With Me</h4>
+                <div className="flex gap-4">
+                  {socialLinks.map((social, index) => (
+                    <motion.a
+                      key={index}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`p-3 text-gray-400 ${social.color} transition-all duration-300 hover:scale-110`}
+                      whileHover={{ y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      title={social.label}
+                    >
+                      {social.icon}
+                    </motion.a>
+                  ))}
+                </div>
               </div>
-              
+
+              {/* Download Resume Button */}
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  Message *
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  required
-                  rows={5}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-vertical bg-white"
-                  placeholder="Tell me about your project, opportunity, or just say hello!"
-                />
+                <motion.button
+                  onClick={() => window.open('/Kathan Parag Shah.pdf', '_blank')}
+                  className="w-full px-6 py-3 bg-gradient-to-r from-primary-500 to-accent-cyan text-white font-medium hover:from-primary-600 hover:to-accent-cyan/90 focus:outline-none transition-all duration-300 flex items-center justify-center gap-2"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <span>Download Resume</span>
+                </motion.button>
               </div>
-              
-              <button
-                type="submit"
-                className="w-full py-3 px-6 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white"
+
+              {/* Availability Status */}
+              <motion.div 
+                className="p-6"
+                variants={itemVariants}
               >
-                <Send size={20} />
-                Send Message
-              </button>
-              
-              {submitStatus === 'success' && (
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                  <p className="text-green-800 font-medium">
-                    Opening your default mail client with the message pre-filled. Please send the email to complete your message.
-                  </p>
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                  <span className="text-green-400 font-medium">Available for Opportunities</span>
                 </div>
-              )}
-              
-              {submitStatus === 'error' && (
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                  <p className="text-red-800 font-medium">
-                    If your mail client didn't open, please contact me directly at kathanshah04@gmail.com
-                  </p>
-                </div>
-              )}
-            </form>
+                <p className="text-gray-300 text-sm">
+                  Currently seeking internships and full-time positions in software engineering, 
+                  data science, and fintech. Open to remote and hybrid opportunities.
+                </p>
+              </motion.div>
+            </motion.div>
+
+            {/* Contact Form */}
+            <motion.div variants={itemVariants}>
+              <div className="p-8">
+                <h3 className="text-2xl font-bold text-gray-100 mb-6">Send a Message</h3>
+                
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                        Name *
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 text-gray-100 placeholder-gray-400 focus:outline-none transition-colors duration-300"
+                        placeholder="Your name"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                        Email *
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 text-gray-100 placeholder-gray-400 focus:outline-none transition-colors duration-300"
+                        placeholder="your.email@example.com"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
+                      Subject *
+                    </label>
+                    <input
+                      type="text"
+                      id="subject"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-4 py-3 text-gray-100 placeholder-gray-400 focus:outline-none transition-colors duration-300"
+                      placeholder="What's this about?"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+                      Message *
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      required
+                      rows={5}
+                      className="w-full px-4 py-3 text-gray-100 placeholder-gray-400 focus:outline-none transition-colors duration-300 resize-vertical"
+                      placeholder="Tell me about your project, opportunity, or just say hello!"
+                    />
+                  </div>
+                  
+                  <motion.button
+                    type="submit"
+                    className="w-full px-6 py-3 bg-gradient-to-r from-primary-500 to-accent-cyan text-white font-medium hover:from-primary-600 hover:to-accent-cyan/90 focus:outline-none transition-all duration-300"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <div className="flex items-center justify-center gap-2">
+                      <Send className="w-4 h-4" />
+                      <span>Send Message</span>
+                    </div>
+                  </motion.button>
+                  
+                  {/* Status Messages */}
+                  {submitStatus === 'success' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="p-4 text-green-400 text-center"
+                    >
+                      Mail client opened! Please send the email to complete your message.
+                    </motion.div>
+                  )}
+                  
+                  {submitStatus === 'error' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="p-4 text-red-400 text-center"
+                    >
+                      Something went wrong. Please try again or contact me directly.
+                    </motion.div>
+                  )}
+                </form>
+              </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
