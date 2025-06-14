@@ -332,37 +332,57 @@ const WheelStrategyDemo = () => {
               <div>
                 <label className="block text-sm text-gray-400 mb-1">Current Stock Price</label>
                 <input
-                  type="text"
+                  type="number"
                   value={stockPrice}
-                  onChange={(e) => setStockPrice(parseFloat(e.target.value) || 100)}
+                  onChange={(e) => {
+                    const value = e.target.value
+                    if (value === '' || !isNaN(parseFloat(value))) {
+                      setStockPrice(value === '' ? 0 : parseFloat(value))
+                    }
+                  }}
                   className="w-full px-3 py-2 bg-dark-bg border border-gray-600 rounded-lg text-white focus:border-primary-500 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 />
               </div>
               <div>
                 <label className="block text-sm text-gray-400 mb-1">Put Strike Price</label>
                 <input
-                  type="text"
+                  type="number"
                   value={strikePrice}
-                  onChange={(e) => setStrikePrice(parseFloat(e.target.value) || 95)}
+                  onChange={(e) => {
+                    const value = e.target.value
+                    if (value === '' || !isNaN(parseFloat(value))) {
+                      setStrikePrice(value === '' ? 0 : parseFloat(value))
+                    }
+                  }}
                   className="w-full px-3 py-2 bg-dark-bg border border-gray-600 rounded-lg text-white focus:border-primary-500 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 />
               </div>
               <div>
                 <label className="block text-sm text-gray-400 mb-1">Premium Received</label>
                 <input
-                  type="text"
-                  step="0.1"
+                  type="number"
+                  step="0.01"
                   value={premium}
-                  onChange={(e) => setPremium(parseFloat(e.target.value) || 2.5)}
+                  onChange={(e) => {
+                    const value = e.target.value
+                    if (value === '' || !isNaN(parseFloat(value))) {
+                      setPremium(value === '' ? 0 : parseFloat(value))
+                    }
+                  }}
                   className="w-full px-3 py-2 bg-dark-bg border border-gray-600 rounded-lg text-white focus:border-primary-500 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 />
               </div>
               <div>
                 <label className="block text-sm text-gray-400 mb-1">Days to Expiration</label>
                 <input
-                  type="text"
+                  type="number"
                   value={daysToExpiration}
-                  onChange={(e) => setDaysToExpiration(parseInt(e.target.value) || 30)}
+                  onChange={(e) => {
+                    const value = e.target.value
+                    if (value === '' || !isNaN(parseInt(value))) {
+                      setDaysToExpiration(value === '' ? 0 : parseInt(value))
+                    }
+                  }}
                   className="w-full px-3 py-2 bg-dark-bg border border-gray-600 rounded-lg text-white focus:border-primary-500 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 />
               </div>
