@@ -96,7 +96,7 @@ const Hero = () => {
                 boxShadow: '0 0 20px rgba(16, 185, 129, 0.3)'
               }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => window.open('/Kathan Parag Shah.pdf', '_blank')}
+              onClick={() => window.open(process.env.NODE_ENV === 'production' ? '/kathan/Kathan Parag Shah.pdf' : '/Kathan Parag Shah.pdf', '_blank')}
               className="px-6 py-3 bg-transparent text-primary-500 font-medium rounded-lg transition-all duration-300 border-2 border-primary-500 text-sm hover:bg-primary-500/10"
             >
               Download Resume

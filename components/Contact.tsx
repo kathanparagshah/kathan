@@ -180,7 +180,7 @@ const Contact = () => {
               {/* Download Resume Button */}
               <div>
                 <motion.button
-                  onClick={() => window.open('/Kathan Parag Shah.pdf', '_blank')}
+                  onClick={() => window.open(process.env.NODE_ENV === 'production' ? '/kathan/Kathan Parag Shah.pdf' : '/Kathan Parag Shah.pdf', '_blank')}
                   className="w-full px-6 py-3 bg-gradient-to-r from-primary-500 to-accent-cyan text-white font-medium hover:from-primary-600 hover:to-accent-cyan/90 focus:outline-none transition-all duration-300 flex items-center justify-center gap-2"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
