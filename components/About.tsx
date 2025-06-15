@@ -61,8 +61,8 @@ const About = () => {
   ]
 
   // Determine if we're in production to use the correct image path
-  const isProd = process.env.NODE_ENV === 'production'
-  const imagePath = isProd ? '/kathan/profile.jpeg' : '/profile.jpeg'
+  const isGitHubPages = process.env.GITHUB_PAGES === 'true'
+  const imagePath = isGitHubPages ? '/kathan/profile.jpeg' : '/profile.jpeg'
 
   return (
     <section id="about" className="py-20" style={{backgroundColor: 'var(--color-bg-primary)'}}>

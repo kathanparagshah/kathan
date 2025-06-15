@@ -85,7 +85,7 @@ const Navigation = () => {
                 className="flex items-center space-x-3 text-xl font-bold text-gray-100 hover:text-primary-400 transition-colors duration-300"
               >
                 <img
-                  src={process.env.NODE_ENV === 'production' ? '/kathan/profile.jpeg' : '/profile.jpeg'}
+                  src={process.env.GITHUB_PAGES === 'true' ? '/kathan/profile.jpeg' : '/profile.jpeg'}
                   alt="Kathan Parag Shah"
                   className="w-10 h-10 rounded-full object-cover border-2 border-primary-400/50"
                 />
