@@ -125,19 +125,7 @@ export default function Home() {
             </section>
           </main>
           
-          {/* Footer */}
-          <footer className="border-t border-gray-700/50 py-8" style={{backgroundColor: 'var(--color-bg-primary)'}}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center">
-                <p className="text-gray-400">
-                  © 2024 Kathan Parag Shah. Built with Next.js, React, and Three.js.
-                </p>
-                <p className="text-gray-500 text-sm mt-2">
-                  Designed for performance, accessibility, and visual impact.
-                </p>
-              </div>
-            </div>
-          </footer>
+
         </div>
     </>
   )
