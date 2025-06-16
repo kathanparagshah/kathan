@@ -6,6 +6,7 @@ import Skills from '@/components/Skills'
 import Experience from '@/components/Experience'
 import Projects from '@/components/Projects'
 import InteractiveDemo from '@/components/InteractiveDemo'
+import Newsletters from '@/components/Newsletters'
 import Contact from '@/components/Contact'
 import NeuralNetworkBackground from '@/components/NeuralNetworkBackground'
 
@@ -117,6 +118,11 @@ export default function Home() {
                   <InteractiveDemo />
                 </div>
               </div>
+            </section>
+            
+            {/* Newsletters Section */}
+            <section id="newsletters" className="relative py-20">
+              <Newsletters />
             </section>
             
             {/* Contact Section */}
