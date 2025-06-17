@@ -5,10 +5,19 @@ import { Mail, Calendar, TrendingUp, BookOpen, ExternalLink } from 'lucide-react
 const Newsletters = () => {
   const newsletters = [
     {
+      title: "Anne Wojcicki Poised to Reclaim 23andMe After 305 Million Bid",
+      description: "Analysis of Anne Wojcicki's $305 million bid to reclaim 23andMe through bankruptcy proceedings, exploring the challenges of rebuilding trust in genetics testing and pivoting business models.",
+      frequency: "Daily",
+      date: "June 17, 2025",
+      topics: ["Biotech", "Corporate Finance", "Data Privacy", "Business Strategy"],
+      status: "Active",
+      link: "https://www.linkedin.com/pulse/anne-wojcicki-poised-reclaim-23andme-after-305-million-kathan-shah-urrjc/?trackingId=RLSYNGdZQna5lPYGEokZoA%3D%3D"
+    },
+    {
       title: "Antimetal Raises $20M to Automate Cloud Infrastructure",
       description: "Analysis of Antimetal's Series A funding and its implications for cloud infrastructure automation, exploring market trends and career opportunities in DevOps and cloud computing.",
       frequency: "Daily",
-      date: "June 15, 2025",
+      date: "June 16, 2025",
       topics: ["Cloud Computing", "Startups", "Infrastructure", "Career Insights"],
       status: "Active",
       link: "https://www.linkedin.com/pulse/antimetal-raises-20m-automate-cloud-infrastructure-kathan-shah-meidc/?trackingId=pihYIurPRv2RgMKMfhJGQw%3D%3D"
@@ -17,7 +26,7 @@ const Newsletters = () => {
       title: "Breaking Up to Break Through: What WBD's 2025 Split Teaches Us About Media Strategy",
       description: "Deep dive into Warner Bros. Discovery's strategic split into two companies, examining the shift from consolidation to specialization in media and its implications for the industry.",
       frequency: "Daily",
-      date: "June 14, 2025",
+      date: "June 15, 2025",
       topics: ["Media Strategy", "Corporate Finance", "M&A", "Industry Analysis"],
       status: "Active",
       link: "https://www.linkedin.com/pulse/breaking-up-break-through-what-wbds-2025-split-teaches-kathan-shah-unolc/?trackingId=dxSfzw3cRye4Q6qO1tbdqg%3D%3D"
