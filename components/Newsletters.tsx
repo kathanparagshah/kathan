@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, ExternalLink, Calendar, BookOpen } from 'lucide-react'
+import { Mail, ExternalLink, Calendar, BookOpen, ChevronDown } from 'lucide-react'
 
 const Newsletters = () => {
   const newsletters = [
@@ -176,6 +176,10 @@ const Newsletters = () => {
     }
   ]
 
+  // State management for showing articles
+  const [showAllArticles, setShowAllArticles] = useState(false)
+  const articlesToShow = showAllArticles ? newsletters.length : 10
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -224,7 +228,7 @@ const Newsletters = () => {
           className="mt-4 flex items-center justify-center space-x-2 text-primary-400"
         >
           <Mail className="w-5 h-5" />
-          <span className="text-lg font-medium">{newsletters.length} articles published</span>
+          <span className="text-lg font-medium">{newsletters.length} articles published with 100+ subscribers</span>
         </motion.div>
       </motion.div>
 
@@ -246,7 +250,7 @@ const Newsletters = () => {
         </div>
         
         <div className="divide-y divide-gray-700/50">
-          {newsletters.map((newsletter, index) => (
+          {newsletters.slice(0, articlesToShow).map((newsletter, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
@@ -289,6 +293,21 @@ const Newsletters = () => {
             </motion.div>
           ))}
         </div>
+        
+        {/* Load More Button */}
+        {!showAllArticles && newsletters.length > 10 && (
+          <div className="p-6 border-t border-gray-700/50 text-center">
+            <motion.button
+              onClick={() => setShowAllArticles(true)}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-flex items-center space-x-2 px-6 py-3 bg-primary-500/10 border border-primary-400/30 text-primary-400 rounded-lg hover:bg-primary-500/20 hover:border-primary-400/50 transition-all duration-300 font-medium"
+            >
+              <span>Load More Articles ({newsletters.length - 10} remaining)</span>
+              <ChevronDown className="w-4 h-4" />
+            </motion.button>
+          </div>
+        )}
       </motion.div>
 
       {/* Newsletter Signup CTA */}
