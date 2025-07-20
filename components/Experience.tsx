@@ -381,25 +381,53 @@ const Experience = () => {
                       {/* Technologies */}
                       <div className="mb-4">
                         <div className="flex flex-wrap gap-1">
-                          {(expandedTech[exp.id] ? exp.technologies : exp.technologies.slice(0, 4)).map((tech) => (
-                            <span
-                              key={tech}
-                              className="px-2 py-1 text-xs bg-gray-700/50 text-gray-300 rounded border border-gray-600/30"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                          {exp.technologies.length > 4 && (
-                            <button
-                              onClick={(e) => toggleTechExpansion(exp.id, e)}
-                              className="px-2 py-1 text-xs text-gray-400 hover:text-primary-400 transition-colors duration-200 cursor-pointer"
-                            >
-                              {expandedTech[exp.id] 
-                                ? 'Show less' 
-                                : `+${exp.technologies.length - 4} more`
-                              }
-                            </button>
-                          )}
+                          {(() => {
+                            // Show all technologies for these specific positions
+                            const showAllTechPositions = [
+                              'Memberships Services Supervisor',
+                              'Business Operation Specialist', 
+                              'ULC Grader Finance & Economics Teaching Fellow'
+                            ];
+                            
+                            const shouldShowAll = showAllTechPositions.includes(exp.title);
+                            const techsToShow = shouldShowAll || expandedTech[exp.id] 
+                              ? exp.technologies 
+                              : exp.technologies.slice(0, 4);
+                            
+                            return techsToShow.map((tech) => (
+                              <span
+                                key={tech}
+                                className="px-2 py-1 text-xs bg-gray-700/50 text-gray-300 rounded border border-gray-600/30"
+                              >
+                                {tech}
+                              </span>
+                            ));
+                          })()}
+                          {(() => {
+                            // Only show +X more button for positions not in the exception list
+                            const showAllTechPositions = [
+                              'Memberships Services Supervisor',
+                              'Business Operation Specialist', 
+                              'ULC Grader Finance & Economics Teaching Fellow'
+                            ];
+                            
+                            const shouldShowAll = showAllTechPositions.includes(exp.title);
+                            
+                            if (!shouldShowAll && exp.technologies.length > 4) {
+                              return (
+                                <button
+                                  onClick={(e) => toggleTechExpansion(exp.id, e)}
+                                  className="px-2 py-1 text-xs text-gray-400 hover:text-primary-400 transition-colors duration-200 cursor-pointer"
+                                >
+                                  {expandedTech[exp.id] 
+                                    ? 'Show less' 
+                                    : `+${exp.technologies.length - 4} more`
+                                  }
+                                </button>
+                              );
+                            }
+                            return null;
+                          })()}
                         </div>
                       </div>
 
