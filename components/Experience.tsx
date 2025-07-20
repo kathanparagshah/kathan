@@ -37,6 +37,46 @@ const Experience = () => {
   const experiences: ExperienceItem[] = [
     {
       id: 1,
+      title: 'ULC Grader Finance & Economics Teaching Fellow',
+      company: 'Global Launch, Arizona State University',
+      location: 'Tempe, AZ',
+      period: 'July 2025 – Present',
+      description: [
+        'Provided detailed feedback on more than 100 undergraduate finance and economics assignments each semester, ensuring grading consistency and helping students understand core concepts through written comments and one-on-one follow-up discussions',
+        'Managed all aspects of assignment submission and grading workflow in Canvas, drafted clear communications on grading rubrics and deadlines, and maintained accurate records that allowed students to track their progress in real time',
+        'Analyzed grade distributions and participation data to identify at-risk students, then coordinated targeted tutoring sessions and progress check-ins that reduced course withdrawal rates by 20 percent and improved overall class retention'
+      ],
+      technologies: ['Canvas LMS', 'Data Analysis', 'Educational Technology', 'Statistical Analysis', 'Academic Assessment'],
+      achievements: [
+        'Graded 100+ assignments per semester',
+        'Reduced course withdrawal rates by 20%',
+        'Improved overall class retention through targeted interventions'
+      ],
+      type: 'work',
+      color: '#10b981'
+    },
+    {
+      id: 2,
+      title: 'Business Operation Specialist',
+      company: 'Global Launch, Arizona State University',
+      location: 'Tempe, AZ',
+      period: 'June 2025 – Present',
+      description: [
+        'Built and maintained automated reporting pipelines using Excel macros and SQL scripts to aggregate data from multiple systems, cutting report generation time by 30 percent and freeing team members to focus on strategic analysis',
+        'Led coordination among sales, marketing and product teams to pilot new customer onboarding processes, gathering feedback at each stage, iterating documentation and successfully launching three service enhancements within quarterly deadlines',
+        'Negotiated and managed vendor contracts by evaluating service levels, benchmarking market rates and fostering strong supplier relationships to secure a 10 percent reduction in annual expenditures without compromising quality'
+      ],
+      technologies: ['Excel Macros', 'SQL', 'Process Automation', 'Vendor Management', 'Cross-functional Coordination'],
+      achievements: [
+        'Cut report generation time by 30%',
+        'Launched 3 service enhancements within quarterly deadlines',
+        'Secured 10% reduction in annual expenditures'
+      ],
+      type: 'work',
+      color: '#06b6d4'
+    },
+    {
+      id: 3,
       title: 'Memberships Services Supervisor',
       company: 'Sun Devil Fitness Complex',
       location: 'Tempe, AZ',
@@ -53,10 +93,10 @@ const Experience = () => {
         'Optimized staffing for 2,000+ members'
       ],
       type: 'work',
-      color: '#10b981'
+      color: '#8b5cf6'
     },
     {
-      id: 2,
+      id: 4,
       title: 'Security Aide',
       company: 'ASU Gammage',
       location: 'Tempe, AZ',
@@ -73,10 +113,10 @@ const Experience = () => {
         'Processed 300+ daily safety interactions'
       ],
       type: 'work',
-      color: '#06b6d4'
+      color: '#f59e0b'
     },
     {
-      id: 3,
+      id: 5,
       title: 'Information Technology Support Specialist',
       company: 'W.P. Carey School of Business',
       location: 'Tempe, AZ',
@@ -93,10 +133,10 @@ const Experience = () => {
         'Reduced unplanned downtime by 30%'
       ],
       type: 'work',
-      color: '#8b5cf6'
+      color: '#ef4444'
     },
     {
-      id: 4,
+      id: 6,
       title: 'Technology Assistant',
       company: 'Sun Devil Athletics',
       location: 'Tempe, AZ',
@@ -113,10 +153,10 @@ const Experience = () => {
         'Improved operational efficiency by 30%'
       ],
       type: 'work',
-      color: '#f59e0b'
+      color: '#84cc16'
     },
     {
-      id: 5,
+      id: 7,
       title: 'Desk Assistant',
       company: 'University Housing',
       location: 'Tempe, AZ',
@@ -133,10 +173,10 @@ const Experience = () => {
         'Informed policy decisions with data reports'
       ],
       type: 'work',
-      color: '#ef4444'
+      color: '#a855f7'
     },
     {
-      id: 6,
+      id: 8,
       title: 'Program Activator',
       company: 'Changemaker Central',
       location: 'Tempe, AZ',
@@ -153,10 +193,10 @@ const Experience = () => {
         'Optimized resource allocation with predictive models'
       ],
       type: 'work',
-      color: '#84cc16'
+      color: '#ec4899'
     },
     {
-      id: 7,
+      id: 9,
       title: 'Bachelor of Science in Computer Science and Economics',
       company: 'Arizona State University',
       location: 'Tempe, AZ',
@@ -173,7 +213,7 @@ const Experience = () => {
         'Completed 5+ data science projects'
       ],
       type: 'education',
-      color: '#a855f7'
+      color: '#6366f1'
     }
   ]
 

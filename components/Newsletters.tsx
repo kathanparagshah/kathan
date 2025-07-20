@@ -76,6 +76,13 @@ const Newsletters = () => {
         >
           Stay updated with my latest insights on Economics and the Stock Market through these curated Newsletters
         </motion.p>
+        <motion.div 
+          variants={itemVariants}
+          className="mt-4 flex items-center justify-center space-x-2 text-primary-400"
+        >
+          <Mail className="w-5 h-5" />
+          <span className="text-lg font-medium">100+ subscribers following daily</span>
+        </motion.div>
       </motion.div>
 
       <motion.div
@@ -185,7 +192,7 @@ const Newsletters = () => {
             Want to stay updated?
           </h3>
           <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
-            Join readers who get my latest insights on Economics and the Stock Market around the world delievered directly to their inbox.
+            Join 100+ readers who get my latest insights on Economics and the Stock Market around the world delivered directly to their inbox.
           </p>
           <div className="flex justify-center">
             <motion.a
