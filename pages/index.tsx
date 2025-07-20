@@ -114,14 +114,14 @@ export default function Home() {
                   </p>
                 </div>
                 
-                <div className="mb-16">
+                <div className="mb-8">
                   <InteractiveDemo />
                 </div>
               </div>
             </section>
             
             {/* Newsletters Section */}
-            <section id="newsletters" className="relative py-20">
+            <section id="newsletters" className="relative py-8">
               <Newsletters />
             </section>
             

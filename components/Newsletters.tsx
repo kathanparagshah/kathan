@@ -205,7 +205,7 @@ const Newsletters = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
         variants={containerVariants}
-        className="text-center mb-16"
+        className="text-center mb-12"
       >
         <motion.h2 
           variants={itemVariants}
