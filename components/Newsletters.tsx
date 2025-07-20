@@ -245,7 +245,7 @@ const Newsletters = () => {
           </h3>
         </div>
         
-        <div className="divide-y divide-gray-700/50">
+        <div className="divide-y divide-gray-700/50 max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-track-gray-800 scrollbar-thumb-primary-400/50 hover:scrollbar-thumb-primary-400/70">
           {newsletters.map((newsletter, index) => (
             <motion.div
               key={index}
