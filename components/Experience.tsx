@@ -42,9 +42,9 @@ const Experience = () => {
       location: 'Tempe, AZ',
       period: 'July 2025 – Present',
       description: [
-        'Provided detailed feedback on more than 100 undergraduate finance and economics assignments each semester, ensuring grading consistency and helping students understand core concepts through written comments and one-on-one follow-up discussions',
-        'Managed all aspects of assignment submission and grading workflow in Canvas, drafted clear communications on grading rubrics and deadlines, and maintained accurate records that allowed students to track their progress in real time',
-        'Analyzed grade distributions and participation data to identify at-risk students, then coordinated targeted tutoring sessions and progress check-ins that reduced course withdrawal rates by 20 percent and improved overall class retention'
+        'Provided detailed feedback on 100+ undergraduate finance and economics assignments per semester, ensuring grading consistency and helping students understand core concepts',
+        'Managed assignment workflow in Canvas, drafted clear grading rubrics and deadlines, and maintained accurate records for real-time student progress tracking',
+        'Analyzed grade distributions to identify at-risk students and coordinated targeted tutoring sessions, reducing course withdrawal rates by 20%'
       ],
       technologies: ['Canvas LMS', 'Data Analysis', 'Educational Technology', 'Statistical Analysis', 'Academic Assessment'],
       achievements: [
@@ -62,9 +62,9 @@ const Experience = () => {
       location: 'Tempe, AZ',
       period: 'June 2025 – Present',
       description: [
-        'Built and maintained automated reporting pipelines using Excel macros and SQL scripts to aggregate data from multiple systems, cutting report generation time by 30 percent and freeing team members to focus on strategic analysis',
-        'Led coordination among sales, marketing and product teams to pilot new customer onboarding processes, gathering feedback at each stage, iterating documentation and successfully launching three service enhancements within quarterly deadlines',
-        'Negotiated and managed vendor contracts by evaluating service levels, benchmarking market rates and fostering strong supplier relationships to secure a 10 percent reduction in annual expenditures without compromising quality'
+        'Built automated reporting pipelines using Excel macros and SQL scripts, cutting report generation time by 30% and enabling strategic analysis focus',
+        'Led cross-functional coordination between sales, marketing and product teams to launch 3 service enhancements within quarterly deadlines',
+        'Negotiated vendor contracts and managed supplier relationships, securing 10% reduction in annual expenditures without compromising quality'
       ],
       technologies: ['Excel Macros', 'SQL', 'Process Automation', 'Vendor Management', 'Cross-functional Coordination'],
       achievements: [
