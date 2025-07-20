@@ -42,9 +42,9 @@ const Experience = () => {
       location: 'Tempe, AZ',
       period: 'July 2025 – Present',
       description: [
-        'Provided detailed feedback on 100+ undergraduate finance and economics assignments per semester, ensuring grading consistency and helping students understand core concepts',
-        'Managed assignment workflow in Canvas, drafted clear grading rubrics and deadlines, and maintained accurate records for real-time student progress tracking',
-        'Analyzed grade distributions to identify at-risk students and coordinated targeted tutoring sessions, reducing course withdrawal rates by 20%'
+        'Provided detailed feedback on 100+ finance and economics assignments per semester',
+        'Managed Canvas workflow, grading rubrics, and maintained real-time progress tracking',
+        'Analyzed grade data to identify at-risk students, reducing withdrawal rates by 20%'
       ],
       technologies: ['Canvas LMS', 'Data Analysis', 'Educational Technology', 'Statistical Analysis', 'Academic Assessment'],
       achievements: [
@@ -62,9 +62,9 @@ const Experience = () => {
       location: 'Tempe, AZ',
       period: 'June 2025 – Present',
       description: [
-        'Built automated reporting pipelines using Excel macros and SQL scripts, cutting report generation time by 30% and enabling strategic analysis focus',
-        'Led cross-functional coordination between sales, marketing and product teams to launch 3 service enhancements within quarterly deadlines',
-        'Negotiated vendor contracts and managed supplier relationships, securing 10% reduction in annual expenditures without compromising quality'
+        'Built automated reporting pipelines with Excel macros and SQL, cutting generation time by 30%',
+        'Led cross-functional teams to launch 3 service enhancements within quarterly deadlines',
+        'Negotiated vendor contracts, securing 10% reduction in annual expenditures'
       ],
       technologies: ['Excel Macros', 'SQL', 'Process Automation', 'Vendor Management', 'Cross-functional Coordination'],
       achievements: [
