@@ -25,6 +25,7 @@ const Experience = () => {
   })
 
   const [activeIndex, setActiveIndex] = useState(0)
+  const [expandedTech, setExpandedTech] = useState<{[key: number]: boolean}>({})
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -225,6 +226,14 @@ const Experience = () => {
     setActiveIndex((prev) => (prev - 1 + experiences.length) % experiences.length)
   }
 
+  const toggleTechExpansion = (expId: number, e: React.MouseEvent) => {
+    e.stopPropagation() // Prevent card click when clicking on +more
+    setExpandedTech(prev => ({
+      ...prev,
+      [expId]: !prev[expId]
+    }))
+  }
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -372,7 +381,7 @@ const Experience = () => {
                       {/* Technologies */}
                       <div className="mb-4">
                         <div className="flex flex-wrap gap-1">
-                          {exp.technologies.slice(0, 4).map((tech) => (
+                          {(expandedTech[exp.id] ? exp.technologies : exp.technologies.slice(0, 4)).map((tech) => (
                             <span
                               key={tech}
                               className="px-2 py-1 text-xs bg-gray-700/50 text-gray-300 rounded border border-gray-600/30"
@@ -381,9 +390,15 @@ const Experience = () => {
                             </span>
                           ))}
                           {exp.technologies.length > 4 && (
-                            <span className="px-2 py-1 text-xs text-gray-400">
-                              +{exp.technologies.length - 4} more
-                            </span>
+                            <button
+                              onClick={(e) => toggleTechExpansion(exp.id, e)}
+                              className="px-2 py-1 text-xs text-gray-400 hover:text-primary-400 transition-colors duration-200 cursor-pointer"
+                            >
+                              {expandedTech[exp.id] 
+                                ? 'Show less' 
+                                : `+${exp.technologies.length - 4} more`
+                              }
+                            </button>
                           )}
                         </div>
                       </div>
